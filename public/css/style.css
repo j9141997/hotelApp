@@ -1,0 +1,73 @@
+/* 吉田CSS */
+
+.admin-home {
+  display: flex;
+  justify-content: space-evenly;
+}
+.admin-btn {
+  color: #FFFFFF;
+  border: 1px solid #ffd166;
+  background-color: #ffd166;
+  padding: 15px 30px;
+  border-radius: 4px;
+}
+.admin-btn:hover {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+
+/* 確認画面 　BY Yoshida　*/
+
+.confirm-header {
+  text-align: center;
+}
+
+
+.confirm-title {
+  width: 100%;
+}
+
+.confirm-body {
+  padding: 40px;
+}
+
+.confirm-section {
+  margin-bottom: 60px;
+}
+.confirm-title>label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.confirm-form {
+  text-align: center;
+}
+
+/* ボタン類 BY yoshida */
+.confirm-btn {
+  border: 1px solid #ffd166;
+  background-color: #ffd166;
+  color: #FFFFFF;
+  height: 48px;
+  padding: 11px 165px;
+  font-size: 17px;
+  border-radius: 4px;
+  margin-bottom: 30px;
+}
+
+.back-btn {
+  background-color: #ccc;
+  border: 1px solid #ccc;
+  color: #222;
+}
+
+.back-btn:hover {
+  text-decoration: none;
+  color: #222;
+}
+
+.delete-btn {
+  background-color: #d90429;
+  border: 1px solid #d90429;
+}

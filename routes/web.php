@@ -38,6 +38,16 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
     });
 });
 
+Route::middleware('auth:user')->group(function () {
+
+    // TOPページ
+    Route::resource('user', 'UsersController', ['only' => ['edit', 'update', 'destroy']]);
+    Route::get('user/{user}/edit/confirm', 'UsersController@editConfirm')->name('user.edit.confirm');
+    Route::get('user/{user}/create/confirm', 'UsersController@createConfirm')->name('user.create.confirm');
+    Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
+    
+});
+
 // 管理者
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
@@ -55,8 +65,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::resource('home', 'HomeController', ['only' => 'index']);
 
 
-        Route::resource('user', 'UsersController');
-        
+        Route::resource('user', 'UsersController', ['only' =>['edit', 'update', 'destroy']]);
+        Route::get('user/{user}/edit/confirm', 'UsersController@editConfirm')->name('user.edit.confirm');
+        Route::get('user/{user}/create/confirm', 'UsersController@createConfirm')->name('user.create.confirm');
+        Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
     }); 
 
 });

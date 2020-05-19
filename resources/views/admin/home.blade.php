@@ -7,15 +7,21 @@
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
+                <div class="card-body admin-home">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
-                    <a href="user/1/edit">編集画面</a>
+                    
+                    <a href="/admin/home" class="admin-btn">会員検索</a>
+                    <br>
+                    <a href="/admin/home" class="admin-btn">宿を検索</a>
+                    <br>
+                    <a href="/admin/home" class="admin-btn">宿登録</a>
+                    <br>
+                    <a href="/admin/home" class="admin-btn">宿泊プラン登録</a>
+                    <br>
                 </div>
             </div>
         </div>

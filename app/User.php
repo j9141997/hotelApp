@@ -30,7 +30,6 @@ class User extends Authenticatable
         'postal'   => ['required', 'string', 'max:7'],
         'address'  => ['required', 'string', 'max:200'],
         'tel'      => ['required', 'string', 'max:20'],
-        'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
         'birthday' => ['required', 'date'],
     ];
 
