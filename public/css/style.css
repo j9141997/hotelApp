@@ -208,3 +208,20 @@ div.under {
 .minititle2{
   font-size: x-large;
 }
+
+
+/* oko */
+/* 管理者 会員情報詳細 */
+table {width:580px;}
+table th {width:200px; padding:10px;}
+table td {padding:10px;}
+.user-detail-content {width:600px; margin-left:auto; margin-right:auto;}
+.user-detail-table {width:580px; margin-left:auto; margin-right:auto; font-size:20px;}
+.user-detail-btn {width:340px; margin:0px 0px 0px auto;}
+#user-detail-subtitle {font-size:28px;}
+#user-detail-btn-destroy {width:150px; margin:0px 15px 0px 0px;
+                          font-size:20px; font-weight:bold; border-radius:5px;
+                          background-color:#cccccc; color:#000033;}
+#user-detail-btn-edit {width:150px; margin:0px 0px 0px 15px;
+                       font-size:20px; font-weight:bold; border-radius:5px;
+                       background-color:#000033; color:#ffffff;}

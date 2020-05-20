@@ -48,7 +48,7 @@ Route::middleware('auth:user')->group(function () {
     // Route::get('user/{user}/edit/confirm', 'UsersController@editConfirm')->name('user.edit.confirm');
     // Route::get('user/{user}/create/confirm', 'UsersController@createConfirm')->name('user.create.confirm');
     // Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
-    
+
 });
 
 // 管理者
@@ -68,10 +68,13 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::resource('home', 'HomeController', ['only' => 'index']);
 
 
+        // 会員情報詳細ページ
+        Route::resource('detail', 'UsersController');
+
         Route::resource('user', 'UsersController', ['only' =>['edit', 'update', 'destroy']]);
         Route::get('user/{user}/edit/confirm', 'UsersController@editConfirm')->name('user.edit.confirm');
         Route::get('user/{user}/create/confirm', 'UsersController@createConfirm')->name('user.create.confirm');
         Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
-    }); 
+    });
 
 });

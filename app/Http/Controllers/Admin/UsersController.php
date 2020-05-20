@@ -22,6 +22,11 @@ class UsersController extends Controller
         dd('hit!');
     }
 
+    public function show($id) {
+      $item = User::find($id);
+      return view('admin.user.detail', ['item'=>$item]);
+    }
+
     public function edit(User $user)
     {
         return view('admin.user.edit', ['user' => $user]);
