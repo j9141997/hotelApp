@@ -20,8 +20,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // return view('user.home');
-    return view('user.editConfirm');
+        return view('user.home');
+    // return view('user.editConfirm');
     }
 
     /**

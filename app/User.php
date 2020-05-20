@@ -33,6 +33,16 @@ class User extends Authenticatable
         'birthday' => ['required', 'date'],
     ];
 
+    public static $regist_rules = [
+        'name'     => ['required', 'string', 'max:50'],
+        'postal'   => ['required', 'string', 'max:7'],
+        'address'  => ['required', 'string', 'max:200'],
+        'tel'      => ['required', 'string', 'max:20'],
+        'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
+        'birthday' => ['required', 'date'],
+        'password' => ['required', 'string', 'min:6', 'confirmed'],
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

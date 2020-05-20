@@ -1,8 +1,14 @@
 /* 吉田CSS */
 
+/* 全体 */
+.card-body {
+  margin: 0 auto;
+}
+
 .admin-home {
   display: flex;
   justify-content: space-evenly;
+  margin: 0;
 }
 .admin-btn {
   color: #FFFFFF;
@@ -46,14 +52,15 @@
 
 /* ボタン類 BY yoshida */
 .confirm-btn {
-  border: 1px solid #ffd166;
-  background-color: #ffd166;
+  border: 1px solid #1F2F54;
+  background-color: #1F2F54;
   color: #FFFFFF;
   height: 48px;
-  padding: 11px 165px;
+  padding: 0 145px;
   font-size: 17px;
   border-radius: 4px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .back-btn {
@@ -70,4 +77,55 @@
 .delete-btn {
   background-color: #d90429;
   border: 1px solid #d90429;
+}
+
+.user-btn {
+  display: flex;
+  justify-content: center;
+}
+
+/* ユーザー入力フォーム */
+
+
+.col-md-6 > input {
+  width: 230px;
+}
+
+.heading {
+  border-bottom: 1px solid #1F2F54;
+}
+
+.login-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 10px;
+}
+
+.login-heading > p {
+  font-size: 12px;
+}
+
+.to-register {
+  text-decoration: underline;
+}
+
+
+.heading > p > span {
+  color: #d90429;
+  font-weight: bold;
+}
+
+.register-group {
+  align-items: baseline;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.register-group > label {
+  width: 105px;
+}
+
+.form-group {
+  margin-top: 20px;
 }

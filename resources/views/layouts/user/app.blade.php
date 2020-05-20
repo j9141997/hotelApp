@@ -17,66 +17,129 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">/
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+    <style>
+    body {
+        color: #1F2F54;
+    }
+
+    /* ヘッダー */
+
+    .header-title {
+        font-size: 32px;
+        padding: 10px;
+        background: #FFFF00;
+    }
+    .header-title > a {
+        color: #1F2F54;
+    }
+    .header-title > a:hover {
+        color: #1F2F54;
+        text-decoration: none;
+    }
+
+    ul.header-menu {
+        border-bottom: solid 20px #FFFF00;
+        background-color: #FFFFFF;
+        display: flex;
+        justify-content: flex-end;
+        list-style: none;
+        padding-right: 40px;
+    }
+
+    li.menu-list {
+        padding: 0 20px;
+        margin: 10px 0;
+        font-weight: bold;
+        border-right: 1px solid #1F2F54;
+    }
+    li.menu-list > a {
+        text-decoration: none;
+        color: #1F2F54;
+    }
+
+    /* フッター */
+    footer {
+        height: 100%;
+        background-color: #666666;
+        color: #FFFFFF;
+    }
+    .footer {
+        text-align: end;
+        padding: 25px 50px;
+    }
+    .footer-title {
+        font-size: 24px;
+    }
+
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+        <header>
+            <div class="header-title">
+                <a href="/">
+                    新宿トラベル
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @unless (Auth::guard('user')->check())
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('user.register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('user.register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endunless
-                    </ul>
-                </div>
             </div>
-        </nav>
+            <ul class="header-menu">
+                <li class="menu-list">
+                    <a href="/">宿を探す</a>
+                </li>
+                @unless (Auth::guard('user')->check())
+                    <li class="menu-list">
+                        <a href="{{ route('user.login' )}}">ログイン</a>
+                    </li>
+                    @if (Route::has('user.register'))
+                        <li class="menu-list">
+                            <a href="{{ route('user.register') }}">登録</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown menu-list">
+                        <a id="navbarDropdown" class="dropdown-toggle " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
 
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('user.home.index') }}">
+                                {{ __('予約履歴') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('user.edit', ['user' => Auth::id()]) }}">
+                                {{ __('会員情報変更') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('user.destroy.confirm', ['user' => Auth::id()])}}">
+                                {{ __('退会する') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('user.logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('ログアウト') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endunless
+            </ul>
+        </header>
         <main class="py-4">
             @yield('content')
         </main>
+        <footer>
+            <div class="footer">
+                <div class="footer-title">
+                    新宿トラベル
+                </div>
+                <div class="copyright">
+                    &copy;Shinjku Travel Inc. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
-</html>
+</html> 

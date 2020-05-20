@@ -28,6 +28,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         'reset'    => false,
         'verify'   => false
     ]);
+    Route::post('createConfirm', 'Auth\RegisterController@createConfirm');
 
     // ログイン認証後
     Route::middleware('auth:user')->group(function () {
@@ -42,9 +43,11 @@ Route::middleware('auth:user')->group(function () {
 
     // TOPページ
     Route::resource('user', 'UsersController', ['only' => ['edit', 'update', 'destroy']]);
-    Route::get('user/{user}/edit/confirm', 'UsersController@editConfirm')->name('user.edit.confirm');
-    Route::get('user/{user}/create/confirm', 'UsersController@createConfirm')->name('user.create.confirm');
+    Route::get('user/{user}/completed', 'UsersController@completed')->name('user.completed');
     Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
+    // Route::get('user/{user}/edit/confirm', 'UsersController@editConfirm')->name('user.edit.confirm');
+    // Route::get('user/{user}/create/confirm', 'UsersController@createConfirm')->name('user.create.confirm');
+    // Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
     
 });
 

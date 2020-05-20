@@ -11,8 +11,8 @@
         @csrf
         <input type="submit" class="confirm-btn create-btn" value="登録">
         <br>
-        <a href="/" class="confirm-btn back-btn">戻る</a>
       </form>
+      <button onclick="location.href='/user/home'" class="confirm-btn back-btn">戻る</button>
      @endslot
   @endcomponent
 @endsection
