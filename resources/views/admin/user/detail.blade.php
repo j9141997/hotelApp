@@ -1,6 +1,6 @@
 {{-- @extends('layouts.admin.app')
      admin用のフッターができたら上のやつに戻す --}}
-@extends('layouts.user.app')
+@extends('layouts.admin.app')
 
 @section('content')
   <div class="user-detail-content">
@@ -18,8 +18,8 @@
       </table>
     </div>
     <div class="user-detail-btn">
-      <input type="submit" id="user-detail-btn-destroy" onclick="location.href='/'" value="退会">
-      <input type="submit" id="user-detail-btn-edit" onclick="location.href='/'" value="変更">
+      <input type="submit" id="user-detail-btn-destroy" onclick="location.href='destroy/confirm'" value="退会">
+      <input type="submit" id="user-detail-btn-edit" onclick="location.href='edit'" value="変更">
     </div>
   </div>
 @endsection
