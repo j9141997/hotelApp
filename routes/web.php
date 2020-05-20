@@ -1,23 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-
 
 // ユーザー
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
@@ -35,7 +23,6 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
-
     });
 });
 
@@ -45,11 +32,21 @@ Route::middleware('auth:user')->group(function () {
     Route::resource('user', 'UsersController', ['only' => ['edit', 'update', 'destroy']]);
     Route::get('user/{user}/completed', 'UsersController@completed')->name('user.completed');
     Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
+    Route::get('user/{user}/reservationlist', 'UsersController@reservationList')->name('user.reservationlist');
     // Route::get('user/{user}/edit/confirm', 'UsersController@editConfirm')->name('user.edit.confirm');
     // Route::get('user/{user}/create/confirm', 'UsersController@createConfirm')->name('user.create.confirm');
     // Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
 
+    // 宿泊プラン関連（予約・変更・キャンセル）
+    Route::resource('hotel/{hotel}/reservation', 'User\ReservationsController');
 });
+
+Route::resource('hotel', 'User\HotelsController', ['only' => 'show']);
+Route::get('hotel/inputsearch', 'User\HotelsController@inputSearch');
+Route::get('hotel/search', 'User\HotelsController@search');
+ 
+
+
 
 // 管理者
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
@@ -67,14 +64,23 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
 
-
-        // 会員情報詳細ページ
-        Route::resource('detail', 'UsersController');
-
-        Route::resource('user', 'UsersController', ['only' =>['edit', 'update', 'destroy']]);
+        // 会員情報関連
+        Route::resource('user', 'UsersController');
         Route::get('user/{user}/edit/confirm', 'UsersController@editConfirm')->name('user.edit.confirm');
         Route::get('user/{user}/create/confirm', 'UsersController@createConfirm')->name('user.create.confirm');
         Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
+
+        // 宿関連
+        Route::resource('hotel', 'HotelsController');
+        Route::get('hotel/inputsearch', 'HotelsController@inputSearch');
+        Route::get('hotel/search', 'HotelsController@search');
+        Route::get('hotel/{hotel}/destroy/confirm', 'HotelsController@destroyConfirm');
+
+        // 宿泊プラン関連
+        Route::prefix('hotel/{hotel}')->group(function(){
+            Route::resource('reservation', 'ReservationsController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+            Route::get('reservation/{reservation}/destroy/confirm', 'ReservationsController@destroyConfirm')->name('reservation.destroy.confirm');
+        });
     });
 
 });
