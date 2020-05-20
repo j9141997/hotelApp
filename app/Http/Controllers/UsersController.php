@@ -72,4 +72,10 @@ class UsersController extends Controller
         }
     }
 
+    // 予約履歴
+    public function reservationList(Request $request)
+    {
+
+    }
+
 }

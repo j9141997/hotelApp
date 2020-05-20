@@ -19,63 +19,111 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <style>
+    body {
+        color: #1F2F54;
+    }
+
+    /* ヘッダー */
+
+    .header-title {
+        font-size: 32px;
+        padding: 10px;
+        background: #FFFF00;
+    }
+    .header-title > a {
+        color: #1F2F54;
+    }
+    .header-title > a:hover {
+        color: #1F2F54;
+        text-decoration: none;
+    }
+
+    ul.header-menu {
+        border-bottom: solid 20px #FFFF00;
+        background-color: #FFFFFF;
+        display: flex;
+        justify-content: flex-end;
+        list-style: none;
+        padding-right: 40px;
+    }
+
+    li.menu-list {
+        padding: 0 20px;
+        margin: 10px 0;
+        font-weight: bold;
+        border-right: 1px solid #1F2F54;
+    }
+    li.menu-list > a {
+        text-decoration: none;
+        color: #1F2F54;
+    }
+
+    /* フッター */
+    footer {
+        height: 100%;
+        background-color: #666666;
+        color: #FFFFFF;
+    }
+    .footer {
+        text-align: end;
+        padding: 25px 50px;
+    }
+    .footer-title {
+        font-size: 24px;
+    }
+
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    YoshidaTravel
+        <header>
+            <div class="header-title">
+                <a href="/admin/home">
+                    新宿トラベル
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @unless (Auth::guard('admin')->check())
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('admin.register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endunless
-                    </ul>
-                </div>
             </div>
-        </nav>
-
+            <ul class="header-menu">
+                @unless (Auth::guard('admin')->check())
+                    <li class="menu-list">
+                        <a href="{{ route('admin.login' )}}">ログイン</a>
+                    </li>
+                @else
+                    <li class="nav-item dropdown menu-list">
+                        <a id="navbarDropdown" class="dropdown-toggle " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('admin.home.index') }}">
+                                {{ __('HOME') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('user.logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('ログアウト') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endunless
+            </ul>
+        </header>
         <main class="py-4">
             @yield('content')
         </main>
+        <footer>
+            <div class="footer">
+                <div class="footer-title">
+                    新宿トラベル
+                </div>
+                <div class="copyright">
+                    &copy;Shinjku Travel Inc. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
-</html>
+</html> 
