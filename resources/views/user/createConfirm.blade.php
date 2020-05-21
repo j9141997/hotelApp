@@ -7,7 +7,7 @@
     @endslot
 
     @slot('form')
-      <form action="{{ route('user.register') }}" method="post" class="confirm-form">
+      <form action="{{ route('user.register') }}" method="POST" class="confirm-form">
         @csrf
         <input type="submit" class="confirm-btn create-btn" value="登録">
         <br>

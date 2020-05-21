@@ -9,15 +9,6 @@ use App\User;
 
 class UsersController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('guest:user');
-    // }
-
-    public function create(User $user)
-    {
-
-    }
 
     // 新規登録完了画面
     public function completed(User $user)

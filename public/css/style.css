@@ -85,10 +85,18 @@
 }
 
 /* ユーザー入力フォーム */
-
-
 .col-md-6 > input {
   width: 230px;
+}
+
+.room-input {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 4px; 
+}
+.room-input > input {
+  width: 50%;
+  margin-right: 6px;
 }
 
 .heading {
@@ -129,6 +137,29 @@
 .form-group {
   margin-top: 20px;
 }
+
+.user-results {
+  width: 500px;
+}
+
+.user-result {
+  border-bottom: 1px solid #1F2F54;
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.to-detail {
+  margin: 0 20px 4px 0;
+  height: 32px;
+  width: 60px;
+  background-color: #1F2F54;
+  border: 1px solid #1F2F54;
+  color: #FFFFFF;
+  border-radius: 4px;
+}
+
 
 /* miyauchi */
 

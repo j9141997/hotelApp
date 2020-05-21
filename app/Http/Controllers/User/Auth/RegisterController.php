@@ -72,12 +72,12 @@ class RegisterController extends Controller
             'tel'      => ['required', 'string', 'max:20'],
             'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
             'birthday' => ['required', 'date'],
-            'password' => ['required', 'string', 'min:6', 'confpirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
 
 
-    protected function createConfirm(Request $request)
+    public function createConfirm(Request $request)
     {
         $user = new User;
         $this->validate($request, User::$regist_rules);

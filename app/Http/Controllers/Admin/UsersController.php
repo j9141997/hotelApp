@@ -17,9 +17,19 @@ class UsersController extends Controller
     }
 
 
+    public function inputSearch()
+    {
+        return view('admin.user.inputSearch');
+    }
+
+    public function search(Request $request)
+    {
+        $users = User::all();
+        return view('admin.user.searchResult', ['users' => $users]);
+    }
+
     public function index(Request $request)
     {
-        dd('hit!');
     }
 
     public function show($id) {
