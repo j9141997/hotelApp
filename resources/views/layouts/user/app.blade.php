@@ -86,7 +86,7 @@
             </div>
             <ul class="header-menu">
                 <li class="menu-list">
-                    <a href="/">宿を探す</a>
+                    <a href="/hotel/inputsearch">宿を探す</a>
                 </li>
                 @unless (Auth::guard('user')->check())
                     <li class="menu-list">

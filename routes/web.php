@@ -16,7 +16,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         'reset'    => false,
         'verify'   => false
     ]);
-    Route::post('createConfirm', 'Auth\RegisterController@createConfirm');
+    Route::post('createConfirm', 'Auth\RegisterController@createConfirm')->name('confirm');
 
     // ログイン認証後
     Route::middleware('auth:user')->group(function () {
@@ -38,12 +38,13 @@ Route::middleware('auth:user')->group(function () {
     // Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
 
     // 宿泊プラン関連（予約・変更・キャンセル）
-    Route::resource('hotel/{hotel}/reservation', 'User\ReservationsController');
+    Route::resource('plan/{plan}/reservation', 'User\ReservationsController');
+    Route::get('plan/{plan}/reservation/{reservation}/cancel/confirm', 'User\ReservationsController@cancelConfirm');
 });
 
 Route::resource('hotel', 'User\HotelsController', ['only' => 'show']);
-Route::get('hotel/inputsearch', 'User\HotelsController@inputSearch');
-Route::get('hotel/search', 'User\HotelsController@search');
+Route::get('hotel/search/input', 'User\HotelsController@inputSearch');
+Route::get('hotel/search/result', 'User\HotelsController@search');
  
 
 
@@ -67,20 +68,20 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         // 会員情報関連
         Route::resource('user', 'UsersController');
         Route::get('user/{user}/edit/confirm', 'UsersController@editConfirm')->name('user.edit.confirm');
+        Route::get('user/search/input', 'UsersController@inputSearch');
+        Route::get('user/search/result', 'UsersController@search');
         Route::get('user/{user}/create/confirm', 'UsersController@createConfirm')->name('user.create.confirm');
         Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
 
         // 宿関連
         Route::resource('hotel', 'HotelsController');
-        Route::get('hotel/inputsearch', 'HotelsController@inputSearch');
-        Route::get('hotel/search', 'HotelsController@search');
+        Route::get('hotel/search/input', 'HotelsController@inputSearch');
+        Route::get('hotel/search/result', 'HotelsController@search');
         Route::get('hotel/{hotel}/destroy/confirm', 'HotelsController@destroyConfirm');
 
         // 宿泊プラン関連
-        Route::prefix('hotel/{hotel}')->group(function(){
-            Route::resource('reservation', 'ReservationsController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
-            Route::get('reservation/{reservation}/destroy/confirm', 'ReservationsController@destroyConfirm')->name('reservation.destroy.confirm');
-        });
+        Route::resource('plan', 'PlansController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+        Route::get('plan/{plan}/destroy/confirm', 'PlansController@destroyConfirm');
     });
 
 });
