@@ -8,30 +8,25 @@
               <div class="card-body confirm-body">
                   <div class="confirm-section">
                     <div class="confirm-title">
-                      <label for="" class="data-title">名前</label>
+                      <label for="" class="data-title">宿泊先</label>
                       <p>{{ $user->name }}</p>
                     </div>
                     <div class="confirm-title">
-                      <label for="" class="data-title">郵便番号</label>
+                      <label for="" class="data-title">宿泊プラン</label>
                       <p>{{ $user->postal }}</p>
                     </div>
                     <div class="confirm-title">
-                      <label for="" class="data-title">住所</label>
+                      <label for="" class="data-title">チェックイン</label>
                       <p>{{ $user->address }}</p>
                     </div>
                     <div class="confirm-title">
-                      <label for="" class="data-title">電話番号</label>
+                      <label for="" class="data-title">チェックアウト</label>
                       <p>{{ $user->tel }}</p>
                     </div>
                     <div class="confirm-title">
-                      <label for="" class="data-title">メールアドレス</label>
+                      <label for="" class="data-title">部屋数</label>
                       <p>{{ $user->email }}</p>
                     </div>
-                    <div class="confirm-title">
-                      <label for="" class="data-title">生年月日</label>
-                      <p>{{ $user->birthday }}</p>
-                    </div>
-                  </div>
                   {{ $form }}
               </div>
           </div>

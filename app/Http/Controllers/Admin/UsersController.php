@@ -17,9 +17,20 @@ class UsersController extends Controller
     }
 
 
+    public function inputSearch()
+    {
+        return view('admin.user.inputSearch');
+    }
+
+    public function search(Request $request)
+    {
+        $users = User::all();
+        $input = 'よしだ';
+        return view('admin.user.searchResult', ['users' => $users, 'input' => $input]);
+    }
+
     public function index(Request $request)
     {
-        dd('hit!');
     }
 
     public function show($id) {

@@ -9,15 +9,6 @@ use App\User;
 
 class UsersController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('guest:user');
-    // }
-
-    public function create(User $user)
-    {
-
-    }
 
     // 新規登録完了画面
     public function completed(User $user)
@@ -56,15 +47,20 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         if ($user->delete()) {
-            return redirect(route('user.home.index'));
+            return redirect('/');
         }
     }
 
     // 退会確認画面
     public function destroyConfirm(User $user)
     {
+        // 今日の日付を定義
+        $today = date('Y-m-d', strtotime('day'));
+
         // ログインしているユーザーIDと削除予定のユーザーIDが一致しているか
-        if ( Auth::guard('user')->check() && Auth::id() == $user->id) {
+        if ( Auth::guard('user')->check() && 
+            Auth::id() == $user->id && 
+            $user->resercations->where('checkin_day', '<', $today)) {
             return view('user.destroyConfirm', ['user' => $user]);
         } else {
             // TOPページにリダイレクトする
@@ -73,9 +69,10 @@ class UsersController extends Controller
     }
 
     // 予約履歴
-    public function reservationList(Request $request)
+    public function reservationList(User $user, Request $request)
     {
-
+        $reservations = $user->reservations;
+        return view('user.reservationList', ['reseravtions' => $reservations]);
     }
 
 }

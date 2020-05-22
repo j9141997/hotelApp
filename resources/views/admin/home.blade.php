@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     
-                    <a href="/admin/home" class="admin-btn">会員検索</a>
+                    <a href="user/search/input" class="admin-btn">会員検索</a>
                     <br>
                     <a href="/admin/home" class="admin-btn">宿を検索</a>
                     <br>

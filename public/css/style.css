@@ -85,10 +85,18 @@
 }
 
 /* ユーザー入力フォーム */
-
-
 .col-md-6 > input {
   width: 230px;
+}
+
+.room-input {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 4px; 
+}
+.room-input > input {
+  width: 50%;
+  margin-right: 6px;
 }
 
 .heading {
@@ -129,6 +137,101 @@
 .form-group {
   margin-top: 20px;
 }
+
+.user-results {
+  width: 500px;
+}
+
+.user-result {
+  border-bottom: 1px solid #1F2F54;
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.to-detail {
+  margin: 0 20px 4px 0;
+  height: 32px;
+  width: 60px;
+  background-color: #1F2F54;
+  border: 1px solid #1F2F54;
+  color: #FFFFFF;
+  border-radius: 4px;
+}
+
+.no-data {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.to-detail-link {
+  text-align: end;
+}
+.to-detail-link > a {
+  color: #1F2F54;
+}
+
+/* トップページ */
+.hotel-list {
+  display: flex;
+  align-items: center;
+  height: 200px !important;
+}
+
+
+
+/* 予約履歴 */
+.reservation-list {
+  background-color: #FFFFFF;
+  margin: 30px 0;
+  padding: 40px 20px;
+  height: 100%;
+}
+
+.reservation-list > .plan-name {
+  font-size: 18px;
+  border-bottom: dotted 2px #1F2F54;
+  margin: 0 20px;
+}
+
+.reservation-detail > .reservation-day, 
+.reservation-detail > .reservation-room,
+.reservation-detail > .reservation-action-btn {
+  text-align: end;
+  margin-right: 40px;
+}
+
+.reservation-detail > .reservation-day {
+  margin-top: 8px;
+}
+
+.reservation-detail > .reservation-action-btn {
+  margin-top: 10px;
+}
+
+/* 予約履歴 > 予約内容変更ボタン */
+.reservation-action-btn > .reservation-edit {
+  background-color: #1F2F54;
+  border: 1px solid #1F2F54;
+  color: #FFFFFF;
+}
+
+/* 予約履歴 > キャンセルボタン */
+.reservation-action-btn > .reservation-cancel {
+  background-color: #EFEFEF;
+  border: 1px solid #EFEFEF;
+  color: #1F2F54;
+  margin-left: 8px
+}
+
+.reservation-action-btn > .reservation-cancel,
+.reservation-action-btn > .reservation-edit {
+  border-radius: 4px;
+  height: 32px;
+}
+
+
 
 /* miyauchi */
 
@@ -193,6 +296,11 @@ button.button1 {
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  .mx-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  } 
 /* 宿検索結果一覧画面 */
 img {
       width: 130px;
@@ -215,13 +323,13 @@ div.under {
 table {width:580px;}
 table th {width:200px; padding:10px;}
 table td {padding:10px;}
-.user-detail-content {width:600px; margin-left:auto; margin-right:auto;}
+.user-detail-content {width:600px; margin-left:auto; margin-right:auto;background-color: #FFFFFF;}
 .user-detail-table {width:580px; margin-left:auto; margin-right:auto; font-size:20px;}
 .user-detail-btn {width:340px; margin:0px 0px 0px auto;}
 #user-detail-subtitle {font-size:28px;}
 #user-detail-btn-destroy {width:150px; margin:0px 15px 0px 0px;
                           font-size:20px; font-weight:bold; border-radius:5px;
-                          background-color:#cccccc; color:#000033;}
+                          background-color:#cccccc; color:#090911;}
 #user-detail-btn-edit {width:150px; margin:0px 0px 0px 15px;
                        font-size:20px; font-weight:bold; border-radius:5px;
                        background-color:#000033; color:#ffffff;}

@@ -6,6 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hotel extends Model
 {
+
+  // 宿泊プランテーブルとのリレーション
+  public function plans()
+  {
+    return $this->hasMany('App\Plan');
+  }
+
+  // ホテルタイプとのリレーション
+  public function type()
+  {
+    return $this->belongsTo('App\Type');
+  }
+
   public static $rules = [
       'name'           => ['required', 'string', 'max:50'],
       'postal'         => ['required', 'string', 'max:7'],

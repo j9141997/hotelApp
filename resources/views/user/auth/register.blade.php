@@ -7,8 +7,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    {{-- <form method="POST" action="{{ route('user.register') }}"> --}}
-                    <form method="POST" action="/user/createConfirm">
+                <form method="POST" action="{{ route('user.register') }}">
                         @csrf
                         <div class="heading">
                             <h2>会員登録</h2>
