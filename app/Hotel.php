@@ -32,6 +32,7 @@ class Hotel extends Model
   ];
 
 
+
   public static $mainRules = [
       'name'           => ['required', 'string', 'max:50'],
       'type_id'        => ['required', 'numeric', 'between:1,6'],
