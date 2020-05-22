@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', 'User\HotelsController@index');
 
 // ユーザー
@@ -46,7 +43,7 @@ Route::middleware('auth:user')->group(function () {
 Route::resource('hotel', 'User\HotelsController', ['only' => 'show']);
 Route::get('hotel/search/input', 'User\HotelsController@inputSearch');
 Route::get('hotel/search/result', 'User\HotelsController@search');
- 
+
 
 
 

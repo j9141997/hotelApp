@@ -33,7 +33,7 @@ class PlansController extends Controller
               $form['plan_exist'] = 1;
               unset($form['_token']);
               $plan->fill($form)->save();
-              return redirect('/admin/home');//リダイレクト先の変更の必要有り
+              return view('admin.plan.store');
             } else {
               $msg = '指定したホテルIDは削除されています。';
               return redirect('/admin/home')//リダイレクト先の変更の必要有り
@@ -91,7 +91,7 @@ class PlansController extends Controller
                   $form = $request->all();
                   unset($form['_token']);
                   $plan->fill($form)->save();
-                  return redirect('/admin/home');
+                  return view('admin.plan.update');
                 } else {
                   $msg = '指定した宿泊プランは削除されています。';
                   return redirect('/admin/home')//リダイレクト先の変更の必要有り
@@ -141,7 +141,7 @@ class PlansController extends Controller
             if($plan->plan_exist == 1) {
               $plan->plan_exist = 0;
               $plan->save();
-              return redirect('/admin/home');//リダイレクト先の変更の必要有り
+              return view('admin.plan.destroy');
             } else {
               $msg = '指定した宿泊プランは削除されています。';
               return redirect('/admin/home')//リダイレクト先の変更の必要有り

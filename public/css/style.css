@@ -92,7 +92,7 @@
 .room-input {
   display: flex;
   align-items: baseline;
-  margin-bottom: 4px; 
+  margin-bottom: 4px;
 }
 .room-input > input {
   width: 50%;
@@ -195,7 +195,7 @@
   margin: 0 20px;
 }
 
-.reservation-detail > .reservation-day, 
+.reservation-detail > .reservation-day,
 .reservation-detail > .reservation-room,
 .reservation-detail > .reservation-action-btn {
   text-align: end;
@@ -236,45 +236,96 @@
 /* miyauchi */
 
 /* 宿詳細画面＆宿泊プラン一覧＆口コミ投稿 */
+/*!!!!!!!!!!!!!!!宮内!!!!!!!!!!!!!!!!*/
+body {background-color: #e8e8e8;}
+/* 宿検索結果一覧画面 */
 .minititle3{
   font-size: xx-large;
   font-weight: 800;
   color: #000033;
 }
+div.detail{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+img {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+div.under {
+  border-bottom: dotted 2px #1F2F54;
+          }
+span.title{
+            font-weight: 800;
+            font-size: x-large;
+            display: inline-block;
+          }
+span.hoteltype{
+              text-align: right;
+              display: inline-block;
+              }
+.self-container{
+                background-color: #e8e8e8;
+              }
+div.item-container{
+                background-color: white;
+                margin-bottom: 20px;
+                height: 150px;
+                  }
 
+/* 宿詳細画面＆宿泊プラン一覧＆口コミ投稿 */
+.ditail2{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+}
 .minititle1{
     color: #FFFFFF;
     background-color: #000033;
     font-size: 1em;
     font-weight: bold;
-    padding: 10px;
+    padding: 5px;
     width: 100px;
     }
-img {
-      width: 180px;
-      height: 180px;
-      object-fit: cover; /* この一行を追加するだけ！ */
-    }
-.border-top{
-    border-top: 1px solid #000033 !important;
-            }
-.border-bottom{
-    border-bottom: 1px solid #000033 !important;
-              }
-  }
+.font1{
+  font-size: 15px;
+}
+
 div.under{
   border-bottom: dotted 2px #000033;
 }
-button.button1 {
+.button1 {
       color: #FFFFFF;
       background-color: #000033;
       font-size: 1em;
       font-weight: bold;
-      padding: 8px;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
+      /* padding: 8px; */
+      /* -moz-border-radius: 5px;
+      -webkit-border-radius: 5px; */
       border-radius: 5px;
     }
+
+/* 宿検索画面 */
+textarea{
+  resize: none;
+}
+.review-textarea {
+  border: 2px solid #000033;
+}
+
+.search1{
+  border-color: #000033;
+  border-style: solid;
+  border-width: 2px;
+}
+.search2{
+  border-color: #000033;
+  border-style: solid;
+  border-width: 2px;
+
   span.title{
       font-weight: 800;
       font-size: x-large;
@@ -311,12 +362,19 @@ img {
     }
 div.under {
   border-bottom: dotted 2px #1F2F54;
+
 }
+.minititle4{
+  font-size: 20px;
+  font-weight: bolder;
+  color: #000033;
+}
+
 /* 完了画面 */
 .minititle2{
   font-size: x-large;
+  margin: 10px;
 }
-
 
 /* oko */
 /* 管理者 会員情報詳細 */

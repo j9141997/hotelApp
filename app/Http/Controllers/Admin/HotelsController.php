@@ -18,10 +18,9 @@ class HotelsController extends Controller
     // 管理者コントローラ
 
     // 検索入力画面
-    // もしかしたらweb.phpにてreturn viewのみで実装できるかも
     public function inputSearch(Request $request)
     {
-       //
+      return view('hotel.inputSearch');
     }
     // 宿一覧検索結果画面
     public function search(Request $request)
@@ -51,7 +50,7 @@ class HotelsController extends Controller
       $form['hotel_exist'] = 1;
       unset($form['_token']);
       $hotel->fill($form)->save();
-      return redirect('/admin/home');//リダイレクト先の変更の必要あり
+      return view('admin.hotel.store');
     }
 
     // 宿詳細＆宿泊プラン一覧画面
@@ -100,8 +99,8 @@ class HotelsController extends Controller
           }
           unset($form['_token']);
           $hotel->fill($form)->save();
-          return redirect('/admin/home');//リダイレクト先の変更の必要あり
-        } else {
+          return view('admin.hotel.update');
+          } else {
           $msg = '指定した宿泊プランは削除されています。';
           return redirect('/admin/home')//リダイレクト先の変更の必要あり
                    ->with('msg', $msg);
@@ -140,7 +139,7 @@ class HotelsController extends Controller
         if($hotel->hotel_exist == 1) {
           $hotel->hotel_exist = 0;
           $hotel->save();
-          return redirect('/admin/home');//リダイレクト先の変更の必要有り
+          return view('admin.hotel.destroy');
         } else {
           $msg = '指定した宿は削除されています。';
           return redirect('/admin/home')//リダイレクト先の変更の必要有り
