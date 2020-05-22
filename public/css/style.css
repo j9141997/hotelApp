@@ -191,6 +191,14 @@
   height: 200px !important;
 }
 
+.time {
+  display: flex;
+}
+
+.time > .checkin-time {
+  margin-right: 10px;
+}
+
 
 
 /* 予約履歴 */
@@ -336,32 +344,32 @@ textarea{
   border-width: 2px;
 }
 
-  span.title{
-      font-weight: 800;
-      font-size: x-large;
-      display: inline-block;
-  }
-  span.hoteltype{
-      text-align: right;
-      display: inline-block;
-  }
-  .self-container{
-    background-color: #e8e8e8;
-  }
-  div.item-container{
-    background-color: white;
-    margin-bottom: 20px;
-    height: 150px;
-  }
-  div.detail{
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  .mx-2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
+span.title{
+    font-weight: 800;
+    font-size: x-large;
+    display: inline-block;
+}
+span.hoteltype{
+    text-align: right;
+    display: inline-block;
+}
+.self-container{
+  background-color: #e8e8e8;
+}
+div.item-container{
+  background-color: white;
+  margin-bottom: 20px;
+  height: 150px;
+}
+div.detail{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.mx-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
 /* 宿検索結果一覧画面 */
 img {
       width: 130px;

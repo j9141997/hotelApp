@@ -14,9 +14,9 @@
                         <span class="hoteltype">{{ $hotel->type->name }}</span>
                       </div>
                     </div>
-                    <P class="mx-2">〒{{ $hotel->postal}}<br>
+                    <P class="mx-2">〒{{substr($hotel->postal, 0, 3) . '-' . substr($hotel->postal, 3)}}<br>
                       {{ $hotel->address }}<br>
-                      チェックイン:{{ date("H:i", strtotime($hotel->checkin_time)) }}　チェックアウト:{{ date("H:i", strtotime($hotel->checkout_time)) }}
+                    チェックイン: {{ date("H:i", strtotime($hotel->checkin_time))}}　チェックアウト: {{ date("H:i", strtotime($hotel->checkout_time))}}
                     </p>
                   </div>
                 </div>
@@ -24,21 +24,21 @@
             </div>
           </section>
 
-      <div class="mx-5">
-        <div class="container mx-5 mb-4">
-            <h2 class="ml-5 minititle3">plan_name</h2>
-              <section>
-                <div class="under ml-5"></div>
-                  <div class="ml-5 text-right">
-                    <span class="mr-5 font1">料金　￥16,000</span>
-                    <span class="mr-2 font1">残り3部屋</span>
-                    <span class=""><input type="submit" class="button1" value="予約する" onclick="location.href='/'"></span>
-                </div>
-              </section>
-            </div>
+      @foreach ($hotel->plans as $plan)
+        <div class="mx-5">
+          <div class="container mx-5 mb-4">
+              <h2 class="ml-5 minititle3">{{ $plan->name }}</h2>
+                <section>
+                  <div class="under ml-5"></div>
+                    <div class="ml-5 text-right">
+                      <span class="mr-5 font1">料金　￥{{ $plan->price }}</span>
+                      <span class="mr-2 font1">残り{{ $plan->room }}部屋</span>
+                      <span class=""><input type="submit" class="button1" value="予約する" onclick="location.href='/plan/{{ $plan->id }}/reservation/create'"></span>
+                    </div>
+                </section>
           </div>
-
-
+        </div>
+      @endforeach
           <div class="mx-5">
             <div class="container mx-5">
               <section class="row">
