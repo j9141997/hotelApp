@@ -11,7 +11,7 @@
             <div class="under">
               <div class="mx-2 ditail2">
                 <span class="title">{{$hotel->name}}</span>
-                <span class="hoteltype">{{$type_name}}</span>  {{--宿タイプをもってきたい--}}
+                <span class="hoteltype">{{$hotel->type->name}}</span>  {{--宿タイプをもってきたい--}}
               </div>
             </div>
             <span class="mx-2">{{'〒' . substr($hotel->postal, 0, 3) . '-' . substr($hotel->postal, 3)}}<br>
