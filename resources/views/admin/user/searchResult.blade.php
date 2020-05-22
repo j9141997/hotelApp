@@ -10,7 +10,7 @@
           <h2>『{{ $input }}』の検索結果</h2>
             {{-- <h2>{{ $input }}の検索結果</h2> --}}
           </div>
-          @if (isset($users))
+          @if (!$users->isEmpty())
             @foreach ($users as $user)
               <div class="user-result">
                 <div class="user-data">
@@ -24,7 +24,6 @@
           @else
             <h3 class="no-data">『{{ $input }}』は存在しません。</h3>
           @endif
-
         </div>
       </div>
     </div>

@@ -115,7 +115,7 @@ class ReservationsTableSeeder extends Seeder
           'count'           => 5,
           //'reservation_day' => '2020/5/19',
           'checkin_day'     => '2020/6/11',
-          'checkout_day'    => '2020//16',
+          'checkout_day'    => '2020/6/16',
         ];
         DB::table('reservations')->insert($param);
 
