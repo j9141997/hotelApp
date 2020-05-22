@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.admin.app')
 @section('content')
   <article class="self-container">
       <div class="mx-5">
@@ -7,7 +7,7 @@
       <section>
         <span class="row ml-5">
           <span class="ml-5 minititle4">宿名で探す</span>
-            <form class="" action="/hotel/search/result" method="get">
+            <form class="" action="/admin/hotel/search/result" method="get">
               <input type="text" class="search1" name="hotelname" size="30" placeholder="宿名を記入してください">
                 <span class="ml-5 minititle4">宿タイプで探す</span>
                     <select class="search2" name="type">

@@ -38,6 +38,9 @@ Route::middleware('auth:user')->group(function () {
     // 宿泊プラン関連（予約・変更・キャンセル）
     Route::resource('plan/{plan}/reservation', 'User\ReservationsController');
     Route::get('plan/{plan}/reservation/{reservation}/cancel/confirm', 'User\ReservationsController@cancelConfirm');
+
+    // 口コミの投稿
+    Route::post('hotel/{hotel}', 'User\ReviewsController@store')->name('review.store');
 });
 
 Route::resource('hotel', 'User\HotelsController', ['only' => 'show']);

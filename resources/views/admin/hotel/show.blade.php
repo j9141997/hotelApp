@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.admin.app')
 @section('content')
     <article>
       <div class="mx-5">
@@ -48,26 +48,10 @@
               <section>
                 <div class="row ml-5 item-container">
                   <div class="mx-4 py-4">
-                    <p>testtesttesttesttesttesttesttesttesttesttesttesttest</p>
+
                   </div>
                 </div>
               </section>
-            </div>
-          </div>
-
-      <div class="mx-5">
-        <div class="container mx-5">
-          <section class="row">
-            <div class="col-md-2 minititle1 text-center ml-5">口コミの投稿</div>
-              <div class="container mx-5">
-                <form class="" action="/hotel/{{$hotel->id}}" method="post">
-                  @csrf
-                  <textarea  name="text" cols="150" rows="5" maxlength="250" class="review-textarea"></textarea>
-                  <div class="text-right">
-                  <button class="button1" type="submit">投稿する</button>
-                </form>
-                </div>
-              </div>
             </div>
           </div>
       </section>

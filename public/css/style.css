@@ -311,12 +311,9 @@ div.under{
 }
 .button1 {
       color: #FFFFFF;
-      background-color: ##000033;
+      background-color: #000033;
       font-size: 1em;
       font-weight: bold;
-      /* padding: 8px; */
-      /* -moz-border-radius: 5px;
-      -webkit-border-radius: 5px; */
       border-radius: 5px;
     }
 
