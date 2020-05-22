@@ -86,7 +86,7 @@
             </div>
             <ul class="header-menu">
                 <li class="menu-list">
-                    <a href="/hotel/inputsearch">宿を探す</a>
+                    <a href="/hotel/search/input">宿を探す</a>
                 </li>
                 @unless (Auth::guard('user')->check())
                     <li class="menu-list">
@@ -102,9 +102,8 @@
                         <a id="navbarDropdown" class="dropdown-toggle " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('user.home.index') }}">
+                            <a class="dropdown-item" href="{{ route('user.reservationlist', ['user' => Auth::id()]) }}">
                                 {{ __('予約履歴') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('user.edit', ['user' => Auth::id()]) }}">
@@ -142,4 +141,4 @@
         </footer>
     </div>
 </body>
-</html> 
+</html>

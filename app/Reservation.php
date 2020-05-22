@@ -11,6 +11,11 @@ class Reservation extends Model
         return $this->belongsTo('App\Plan');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     protected $fillable = [
         'checkin_day',
         'checkout_day',

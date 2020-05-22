@@ -17,10 +17,9 @@ class HotelsController extends Controller
     // 管理者コントローラ
 
     // 検索入力画面
-    // もしかしたらweb.phpにてreturn viewのみで実装できるかも
     public function inputSearch(Request $request)
     {
-
+      return view('hotel.inputSearch');
     }
     // 宿一覧検索結果画面
     public function search(Request $request)
@@ -37,7 +36,7 @@ class HotelsController extends Controller
     // 宿の保存 & 宿完了画面
     public function store(Request $request)
     {
-        //
+      return view('admin.hotel.store');
     }
 
     // 宿詳細＆宿泊プラン一覧画面
@@ -49,24 +48,30 @@ class HotelsController extends Controller
     // 宿編集画面
     public function edit($id)
     {
-        //
+      //
     }
 
     // 宿更新画面 & 宿完了画面
     public function update(Request $request, $id)
     {
-        //
+      return view('admin.hotel.update');
     }
 
     // 宿削除確認画面
     public function destroyConfirm(Request $request)
     {
-        
+
     }
 
     // 宿削除 & 宿削除完了画面
     public function destroy($id)
     {
-        //
+        return view('admin.hotel.destroy');
+    }
+
+    public function miyauchi()
+    {
+      dd('working Miyauchi!');
+      return view('hotel.hConplication');
     }
 }

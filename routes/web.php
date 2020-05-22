@@ -3,9 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
+// 仮ルーティング
+Route::get('miyauchi', function() {
+  return view('admin.plan.store');
 });
+
+Route::get('/', 'User\HotelsController@index');
 
 // ユーザー
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
@@ -45,7 +48,7 @@ Route::middleware('auth:user')->group(function () {
 Route::resource('hotel', 'User\HotelsController', ['only' => 'show']);
 Route::get('hotel/search/input', 'User\HotelsController@inputSearch');
 Route::get('hotel/search/result', 'User\HotelsController@search');
- 
+
 
 
 
