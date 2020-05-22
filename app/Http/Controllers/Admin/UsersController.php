@@ -25,7 +25,8 @@ class UsersController extends Controller
     public function search(Request $request)
     {
         $users = User::all();
-        return view('admin.user.searchResult', ['users' => $users]);
+        $input = 'よしだ';
+        return view('admin.user.searchResult', ['users' => $users, 'input' => $input]);
     }
 
     public function index(Request $request)
