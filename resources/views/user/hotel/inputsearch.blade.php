@@ -7,16 +7,17 @@
       <section>
         <span class="row ml-5">
           <span class="ml-5 minititle4">宿名で探す</span>
-            <form class="" action="/hotel/search/result" method="get">
-              <input type="text" class="search1" name="hotelname" size="30" placeholder="宿名を記入してください">
+            <form class="" action="/admin/hotel/search/result" method="get">
+              <input type="text" class="search1" name="name" size="30" placeholder="宿名を記入してください">
                 <span class="ml-5 minititle4">宿タイプで探す</span>
-                    <select class="search2" name="type">
-                      <option>シティホテル</option>
-                      <option>リゾートホテル</option>
-                      <option>ビジネスホテル</option>
-                      <option>旅館</option>
-                      <option>民宿</option>
-                      <option>ペンション</option>
+                    <select class="search2" name="type_id">
+                      <option value="0">選択して下さい</option>
+                      <option value="1">シティホテル</option>
+                      <option value="2">リゾートホテル</option>
+                      <option value="3">ビジネスホテル</option>
+                      <option value="4">旅館</option>
+                      <option value="5">民宿</option>
+                      <option value="6">ペンション</option>
                     </select>
                 <input class="button1 ml-5" type="submit" value="検索する">
             </form>

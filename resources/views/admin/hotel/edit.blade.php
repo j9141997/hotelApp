@@ -125,7 +125,7 @@
                                     </span>
                                 @enderror--}}
                                 @error('image')
-                                   {{$message}}
+                                   <div class="notice">{{$message}}</div>
                                 @enderror
                             </div>
                         </div>

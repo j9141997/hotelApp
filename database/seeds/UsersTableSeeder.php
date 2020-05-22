@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
                 'tel'               => '0823287315',
                 'email'             => 'yamada_hanako@example.com',
                 'birthday'          => '1982/11/16',
-                'password'          => Hash::make('aaabbbccc'),
+                'password'          => Hash::make('12345678'),
                 'remember_token'    => Str::random(10),
             ],
             [
@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
                 'tel'               => '09061373448',
                 'email'             => 'seo_teppei@example.com',
                 'birthday'          => '1957/12/28',
-                'password'          => Hash::make('1234567'),
+                'password'          => Hash::make('12345678'),
                 'remember_token'    => Str::random(10),
             ],
             [
@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
                 'tel'               => '09049925850',
                 'email'             => 'mizukawa_reiko@example.com',
                 'birthday'          => '1989/7/7',
-                'password'          => Hash::make('333333333'),
+                'password'          => Hash::make('12345678'),
                 'remember_token'    => Str::random(10),
             ],
             [
@@ -54,7 +54,7 @@ class UsersTableSeeder extends Seeder
                 'tel'               => '08015314606',
                 'email'             => 'masuoka_aya@example.com',
                 'birthday'          => '1980/11/18',
-                'password'          => Hash::make('4567890'),
+                'password'          => Hash::make('12345678'),
                 'remember_token'    => Str::random(10),
             ],
             [
@@ -64,7 +64,7 @@ class UsersTableSeeder extends Seeder
                 'tel'               => '09075105753',
                 'email'             => 'matsuyama_satomi@example.com',
                 'birthday'          => '1956/6/6',
-                'password'          => Hash::make('aaabbbccc'),
+                'password'          => Hash::make('12345678'),
                 'remember_token'    => Str::random(10),
             ],
             [
@@ -74,7 +74,7 @@ class UsersTableSeeder extends Seeder
                 'tel'               => '09041318550',
                 'email'             => 'okuno_rio@example.com',
                 'birthday'          => '1995/2/17',
-                'password'          => Hash::make('1a1a1a1a'),
+                'password'          => Hash::make('12345678'),
                 'remember_token'    => Str::random(10),
             ],
             [
@@ -84,7 +84,7 @@ class UsersTableSeeder extends Seeder
                 'tel'               => '08093222805',
                 'email'             => 'miura_haruka@example.com',
                 'birthday'          => '1955/12/20',
-                'password'          => Hash::make('111222333'),
+                'password'          => Hash::make('12345678'),
                 'remember_token'    => Str::random(10),
             ],
             [
@@ -94,7 +94,7 @@ class UsersTableSeeder extends Seeder
                 'tel'               => '08067705132',
                 'email'             => 'takagi_masatoshi@example.com',
                 'birthday'          => '1996/4/30	',
-                'password'          => Hash::make('88888888'),
+                'password'          => Hash::make('12345678'),
                 'remember_token'    => Str::random(10),
             ],
             [
@@ -104,7 +104,7 @@ class UsersTableSeeder extends Seeder
                 'tel'               => '08040904891',
                 'email'             => 'tanaka_taro1@example.com',
                 'birthday'          => '1955/8/17',
-                'password'          => Hash::make('999000'),
+                'password'          => Hash::make('12345678'),
                 'remember_token'    => Str::random(10),
             ],
             [
@@ -114,7 +114,7 @@ class UsersTableSeeder extends Seeder
                 'tel'               => '08046836681',
                 'email'             => 'tanaka_taro2@example.com',
                 'birthday'          => '1992/11/29',
-                'password'          => Hash::make('10101010'),
+                'password'          => Hash::make('12345678'),
                 'remember_token'    => Str::random(10),
             ],
         ];

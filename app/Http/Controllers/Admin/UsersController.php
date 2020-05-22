@@ -24,9 +24,8 @@ class UsersController extends Controller
 
     public function search(Request $request)
     {
-        $users = User::where('name', $request->user_name)->get();
-        //$users = User::all();
-        return view('admin.user.testsearchResult', ['users' => $users]);  //テスト用
+         $users = User::where('name', 'like', "%$request->input%")->get();
+         return view('admin.user.searchResult', ['input' => $request->input, 'users' => $users]);
     }
 
     public function index(Request $request)

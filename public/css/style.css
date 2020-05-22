@@ -334,6 +334,7 @@ textarea{
   border-color: #000033;
   border-style: solid;
   border-width: 2px;
+}
 
   span.title{
       font-weight: 800;
@@ -414,6 +415,11 @@ input::-moz-placeholder{
 }
 input:-ms-input-placeholder{
   font-size: 10px;
+}
+/*写真登録のエラー文*/
+.notice {
+  color: #d90429;
+  font-weight: bold;
 }
 
 /*フォーム注意書きの設定*/

@@ -96,6 +96,7 @@
 
                             <div class="col-md-6">
                                 <select id="type_id" class="form-control @error('type_id') is-invalid @enderror" name="type_id"  value="{{ old('type_id') }}" required>
+                                  <option value="0">選択して下さい</option>
                                   <option value="1">シティホテル</option>
                                   <option value="2">リゾートホテル</option>
                                   <option value="3">ビジネスホテル</option>
@@ -117,15 +118,16 @@
 
                             <div class="col-md-6">
                                 <input id="image" type="file" accept="image/*" name="image" value="{{old('image')}}" required>
-
-                                @error('image')
+                                <p>※1MB以下の写真を選択してください</p>
+                                {{--@error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                                {{--@error('image')
-                                   {{$message}}
                                 @enderror--}}
+
+                                @error('image')
+                                   <div class="notice">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
 

@@ -24,7 +24,8 @@
                             <label for="hotel_id" class="">宿名</label>
 
                             <div class="col-md-6">
-                                <select id="hotel_id" class="form-control @error('hotel_id') is-invalid @enderror" name="type_id"  value="{{ old('$plan->hotel_id') }}" required>
+                                <select id="hotel_id" class="form-control @error('hotel_id') is-invalid @enderror" name="hotel_id"  value="{{ old('$plan->hotel_id') }}" required>
+                                  <option value="0">選択して下さい</option>
                                   @foreach($hotels as $hotel)
                                     <option value="{{$hotel->id}}">{{$hotel->name}}</option>
                                   @endforeach

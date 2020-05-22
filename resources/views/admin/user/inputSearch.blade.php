@@ -21,12 +21,12 @@
   　　　　　　　　　　　　　　@endif
                         </div>
                         <div class="form-group row register-group">
-                            <label for="user_name" class="">会員名</label>
+                            <label for="input" class="">氏名</label>
 
                             <div class="col-md-6">
-                                <input id="user_name" type="text" class="form-control @error('user_name') is-invalid @enderror" name="user_name" value="{{old('$user_name')}}" required autocomplete="user_name" placeholder="例）吉田純基" autofocus>
+                                <input id="input" type="text" class="form-control @error('input') is-invalid @enderror" name="input" value="{{old('input')}}" required autocomplete="input" placeholder="例）吉田純基" autofocus>
 
-                                @error('user_name')
+                                @error('input')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
