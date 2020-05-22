@@ -13,12 +13,16 @@
             <span class="hoteltype">{{ $hotel->type->name }}</span>
             </div>
           </div>
-          <P class="mx-2">〒{{substr($hotel->postal, 0, 3) . '-' . substr($hotel->postal, 3)}}<br>
+          <div class="mx-2">〒{{substr($hotel->postal, 0, 3) . '-' . substr($hotel->postal, 3)}}<br>
             {{ $hotel->address }}<br>
-          </p>
-          <div class="reservation_day">
-            チェックイン: {{ date("H:i", strtotime($hotel->checkin_time))}}
-            チェックアウト: {{ date("H:i", strtotime($hotel->checkout_time))}}
+          </div>
+          <div class="time mx-2">
+            <div class="checkin-time">
+              チェックイン: {{ date("H:i", strtotime($hotel->checkin_time))}}
+            </div>
+            <div class="checkout-time">
+              チェックアウト: {{ date("H:i", strtotime($hotel->checkout_time))}}
+            </div>
           </div>
           <p class="to-detail-link">
           <a href="/hotel/{{$hotel->id}}">詳細はこちらから</a> 
