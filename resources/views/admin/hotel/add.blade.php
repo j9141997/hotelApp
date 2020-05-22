@@ -123,6 +123,9 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                {{--@error('image')
+                                   {{$message}}
+                                @enderror--}}
                             </div>
                         </div>
 

@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    
+
                     <a href="user/search/input" class="admin-btn">会員検索</a>
                     <br>
                     <a href="/admin/home" class="admin-btn">宿を検索</a>
@@ -27,4 +27,9 @@
         </div>
     </div>
 </div>
+
+@if (session('msg') !== null)
+  <p> {{session('msg')}} </p>
+@endif
+
 @endsection

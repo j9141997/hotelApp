@@ -116,13 +116,16 @@
                             <label for="image" class="">宿写真</label>
 
                             <div class="col-md-6">
-                                <input id="image" type="file" accept="image/*" name="image" value="">
+                                <input id="image" type="file" accept="image/*" name="image" value="test">
                                 <img src="/storage/{{$form->image}}">
 
-                                @error('image')
+                                {{--@error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
+                                @enderror--}}
+                                @error('image')
+                                   {{$message}}
                                 @enderror
                             </div>
                         </div>
