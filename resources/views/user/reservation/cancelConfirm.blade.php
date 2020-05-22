@@ -16,7 +16,7 @@
         @method('DELETE')
         <input type="submit" class="confirm-btn create-btn" value="キャンセル">
       </form>
-      <button onclick="location.href='/user/home'" class="confirm-btn back-btn">戻る</button>
+    <button onclick="location.href='/user/{{$reservation->user_id}}/reservationlist'" class="confirm-btn back-btn">戻る</button>
     @endslot
   @endcomponent
 @endsection
