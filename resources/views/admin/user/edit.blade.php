@@ -28,7 +28,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row register-group">
                             <label for="postal" class="">郵便番号</label>
 

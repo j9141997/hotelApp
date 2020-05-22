@@ -24,9 +24,9 @@ class UsersController extends Controller
 
     public function search(Request $request)
     {
-        $users = User::all();
-        $input = 'よしだ';
-        return view('admin.user.searchResult', ['users' => $users, 'input' => $input]);
+        $users = User::where('name', $request->user_name)->get();
+        //$users = User::all();
+        return view('admin.user.testsearchResult', ['users' => $users]);  //テスト用
     }
 
     public function index(Request $request)
@@ -73,6 +73,8 @@ class UsersController extends Controller
             return redirect()->route('admin.home.index');
         }
     }
+
+
 
     public function destroyConfirm(User $user)
     {
