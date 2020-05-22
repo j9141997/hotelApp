@@ -22,12 +22,6 @@ class HotelsController extends Controller
       return view('user.hotel.search', ['hotels' => $hotels,'keyword' => $request->hotelname]);
     }
 
-    public function index()
-    {
-        $hotels = Hotel::all();
-        return view('welcome', ['hotels' => $hotels]);
-    }
-
     // 宿詳細＆宿泊プラン一覧画面
     public function show($id)
     {
