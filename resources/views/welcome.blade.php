@@ -5,7 +5,7 @@
   @foreach ($hotels as $hotel)
     <section>
       <div class="row ml-5 item-container hotel-list">
-        <div class="col-md-3"><img src="https://fotopus.com/neko/images/top/neko_magazine04.jpg" alt="" class="ml-5"></div>
+        <div class="col-md-3"><img src="https://fotopus.com/neko/images/top/neko_magazine04.jpg" alt="" class="ml-5 toppage-image"></div>
         <div class="col-md-9 detail">
           <div class="under">
             <div class="mx-2">

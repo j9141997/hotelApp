@@ -8,6 +8,12 @@ use App\Hotel;
 
 class HotelsController extends Controller
 {
+
+    public function index()
+    {
+      $hotels = Hotel::all();
+      return view('welcome', ['hotels' => $hotels]);
+    }
     // 検索入力画面
     public function inputSearch(Request $request)
     {
