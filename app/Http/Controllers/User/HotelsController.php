@@ -11,7 +11,7 @@ class HotelsController extends Controller
     // 検索入力画面
     public function inputSearch(Request $request)
     {
-      return view('hotel.inputSearch');
+      return view('user.hotel.inputsearch');
     }
 
 
@@ -20,6 +20,12 @@ class HotelsController extends Controller
     {
       $hotels = Hotel::where('name', 'like', '%' . $request->hotelname . '%')->get();
       return view('user.hotel.search', ['hotels' => $hotels]);
+    }
+
+    public function index()
+    {
+        $hotels = Hotel::all();
+        return view('welcome', ['hotels' => $hotels]);
     }
 
     public function index()

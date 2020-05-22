@@ -3,11 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-// 仮ルーティング
-Route::get('miyauchi', function() {
-  return view('admin.plan.store');
-});
-
 Route::get('/', 'User\HotelsController@index');
 
 // ユーザー
