@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.admin.app')
 @section('content')
     <article class="self-container">
       <div class="container mx-5">
@@ -17,7 +17,7 @@
                {{ $hotel->address }}
              <br>
                チェックイン:{{ date("H:i", strtotime($hotel->checkin_time)) }}　　チェックアウト:{{ date("H:i", strtotime($hotel->checkout_time)) }}</span>
-               <span class=""><input type="submit" class="button1" value="詳細はこちら" onclick="location.href='/hotel/{{$hotel->id}}'"></span>
+               <span class=""><input type="submit" class="button1" value="詳細はこちら" onclick="location.href='/admin/hotel/{{$hotel->id}}'"></span>
            </div>
          </div>
         @endforeach

@@ -19,18 +19,22 @@ class HotelsController extends Controller
     // 検索入力画面
     public function inputSearch(Request $request)
     {
-      return view('hotel.inputSearch');
+      return view('admin.hotel.inputSearch');
     }
     // 宿一覧検索結果画面
     public function search(Request $request)
     {
-
+      $hotels = Hotel::where('name', 'like', '%' . $request->hotelname . '%')->get();
+      return view('admin.hotel.search',['hotels' => $hotels,
+                                        'keyword' => $request->hotelname
+                                      ]);
     }
     // 宿の保存 & 宿完了画面
 
     // 宿の登録入力画面
     public function create(Request $request)
     {
+
       return view('admin.hotel.add');//テンプレート変更の必要有り
     }
 
@@ -55,7 +59,8 @@ class HotelsController extends Controller
     // 宿詳細＆宿泊プラン一覧画面
     public function show($id)
     {
-        //
+        $hotel = Hotel::find($id);
+        return view('admin.hotel.show',['hotel'=> $hotel]);
     }
 
     // 宿編集画面
