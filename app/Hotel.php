@@ -13,6 +13,12 @@ class Hotel extends Model
     return $this->hasMany('App\Plan');
   }
 
+  // ホテルタイプとのリレーション
+  public function type()
+  {
+    return $this->belongsTo('App\Type');
+  }
+
   public static $rules = [
       'name'           => ['required', 'string', 'max:50'],
       'postal'         => ['required', 'string', 'max:7'],

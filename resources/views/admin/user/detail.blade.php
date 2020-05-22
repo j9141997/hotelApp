@@ -18,8 +18,8 @@
       </table>
     </div>
     <div class="user-detail-btn">
-      <input type="submit" id="user-detail-btn-destroy" onclick="location.href='destroy/confirm'" value="退会">
-      <input type="submit" id="user-detail-btn-edit" onclick="location.href='edit'" value="変更">
+      <input type="submit" id="user-detail-btn-destroy" onclick="location.href='{{$item->id}}/destroy/confirm'" value="退会">
+    <input type="submit" id="user-detail-btn-edit" onclick="location.href='{{$item->id}}/edit'" value="変更">
     </div>
   </div>
 @endsection
