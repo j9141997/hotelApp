@@ -14,7 +14,7 @@
                             <h1>宿情報の変更</h1>
                             <p>
                                 以下の項目はすべて<span>必須</span>となります。<br>
-                                入力が終わりましたら、「登録する」ボタンを押してください。
+                                入力が終わりましたら、「変更する」ボタンを押してください。
                             </p>
 　　　　　　　　　　　　　　　@if(count($errors) > 0)
     　　　　　　　　　　　　　　<p><span>入力に問題があります。再入力してください。</span></p>
@@ -24,7 +24,7 @@
                             <label for="name" class="">宿名</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$form->name}}" required autocomplete="name" placeholder="例）吉田旅館" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$form->name}}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -38,7 +38,7 @@
                             <label for="postal" class="">郵便番号</label>
 
                             <div class="col-md-6">
-                                <input id="postal" type="text" class="form-control @error('postal') is-invalid @enderror" name="postal" value="{{ $form->postal }}" required autocomplete="postal" placeholder="例）1231234">
+                                <input id="postal" type="text" class="form-control @error('postal') is-invalid @enderror" name="postal" value="{{ $form->postal }}" required autocomplete="postal">
                                 <p>※ハイフンを入れずに入力してください</p>
 
                                 @error('postal')
@@ -53,7 +53,7 @@
                             <label for="address" class="">住所</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ $form->address }}" required placeholder="例）東京都千代田区千代田１－１１" >
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ $form->address }}" required >
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -132,7 +132,7 @@
 
                         <div class="form-group row mb-0">
                             <button type="submit" class="complete-btn">
-                                {{ __('登録する') }}
+                                {{ __('変更する') }}
                             </button>
                         </div>
                     </form>

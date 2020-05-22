@@ -65,6 +65,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         // 会員情報関連
         Route::resource('user', 'UsersController');
+        Route::get('user/search/input', 'UsersController@inputSearch');
+        Route::post('user/search/result', 'UsersController@search');
         Route::get('user/{user}/edit/confirm', 'UsersController@editConfirm')->name('user.edit.confirm');
         Route::get('user/search/input', 'UsersController@inputSearch');
         Route::get('user/search/result', 'UsersController@search');

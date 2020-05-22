@@ -38,7 +38,7 @@
                             <label for="postal" class="">郵便番号</label>
 
                             <div class="col-md-6">
-                                <input id="postal" type="text" class="form-control @error('postal') is-invalid @enderror" name="postal" value="{{ old('$hotel->postal') }}" required autocomplete="postal" placeholder="例）1231234">
+                                <input id="postal" type="text" class="form-control @error('postal') is-invalid @enderror" name="postal" value="{{ old('postal') }}" required autocomplete="postal" placeholder="例）1231234">
                                 <p>※ハイフンを入れずに入力してください</p>
 
                                 @error('postal')
@@ -53,7 +53,7 @@
                             <label for="address" class="">住所</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('$hotel->address') }}" required placeholder="例）東京都千代田区千代田１－１１" >
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required placeholder="例）東京都千代田区千代田１－１１" >
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
                             <label for="checkin_time" class="">チェックイン</label>
 
                             <div class="col-md-6">
-                                <input id="checkin_time" type="time" class="form-control @error('checkin_time') is-invalid @enderror" name="checkin_time" value="{{ old('$hotel->checkin_time') }}" required>
+                                <input id="checkin_time" type="time" class="form-control @error('checkin_time') is-invalid @enderror" name="checkin_time" value="{{ old('checkin_time') }}" required>
 
                                 @error('checkin_time')
                                     <span class="invalid-feedback" role="alert">
@@ -81,7 +81,7 @@
                             <label for="checkout_time" class="">チェックアウト</label>
 
                             <div class="col-md-6">
-                                <input id="checkout_time" type="time" class="form-control @error('checkout_time') is-invalid @enderror" name="checkout_time" value="{{ old('$hotel->checkout_time') }}" required>
+                                <input id="checkout_time" type="time" class="form-control @error('checkout_time') is-invalid @enderror" name="checkout_time" value="{{ old('checkout_time') }}" required>
 
                                 @error('checkout_time')
                                     <span class="invalid-feedback" role="alert">
@@ -95,7 +95,7 @@
                             <label for="type_id" class="">宿タイプ</label>
 
                             <div class="col-md-6">
-                                <select id="type_id" class="form-control @error('type_id') is-invalid @enderror" name="type_id"  value="{{ old('$hotel->type_id') }}" required>
+                                <select id="type_id" class="form-control @error('type_id') is-invalid @enderror" name="type_id"  value="{{ old('type_id') }}" required>
                                   <option value="1">シティホテル</option>
                                   <option value="2">リゾートホテル</option>
                                   <option value="3">ビジネスホテル</option>
@@ -116,7 +116,7 @@
                             <label for="image" class="">宿写真</label>
 
                             <div class="col-md-6">
-                                <input id="image" type="file" accept="image/*" name="image" >
+                                <input id="image" type="file" accept="image/*" name="image" value="{{old('image')}}" required>
 
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">

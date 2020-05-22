@@ -18,7 +18,8 @@ class PlansController extends Controller
         // 宿泊プラン入力画面
         public function create()
         {
-           return view('admin.plan.test');//テンプレート変更の必要有り
+          $hotels = HOTEL::all();
+          return view('admin.plan.add', ['hotels' => $hotels ]);
         }
 
         // 宿泊プラン登録 & 宿泊プラン完了画面

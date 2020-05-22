@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Hotel;
 
 class ReservationsController extends Controller
 {
@@ -16,7 +17,8 @@ class ReservationsController extends Controller
     // 宿泊プラン入力画面
     public function create()
     {
-
+      $hotels = HOTEL::all();
+      return view('admin.plan.add', ['hotels' => $hotels ]);
     }
 
     // 宿泊プラン登録 & 宿泊プラン完了画面

@@ -63,6 +63,18 @@
   width: 100%;
 }
 
+.complete-btn {
+  border: 1px solid #1F2F54;
+  background-color: #1F2F54;
+  color: #FFFFFF;
+  height: 48px;
+  padding: 0 145px;
+  font-size: 17px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
 .back-btn {
   background-color: #ccc;
   border: 1px solid #ccc;
@@ -299,7 +311,7 @@ div.under{
 }
 .button1 {
       color: #FFFFFF;
-      background-color: #000033;
+      background-color: ##000033;
       font-size: 1em;
       font-weight: bold;
       /* padding: 8px; */
@@ -351,7 +363,7 @@ textarea{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-  } 
+  }
 /* 宿検索結果一覧画面 */
 img {
       width: 130px;
@@ -391,3 +403,38 @@ table td {padding:10px;}
 #user-detail-btn-edit {width:150px; margin:0px 0px 0px 15px;
                        font-size:20px; font-weight:bold; border-radius:5px;
                        background-color:#000033; color:#ffffff;}
+
+/*　sato　*/
+/*プレースホルダのフォントサイズを変えました*/
+input::-webkit-input-placeholder{
+  font-size: 10px;
+}
+input:-moz-placeholder {
+  font-size: 10px;
+}
+input::-moz-placeholder{
+  font-size: 10px;
+}
+input:-ms-input-placeholder{
+  font-size: 10px;
+}
+
+/*フォーム注意書きの設定*/
+.col-md-6>p{
+  font-size: 10px;
+  width: 230px;
+  margin-bottom: 0;
+}
+
+/*管理者：会員検索画面ボタン*/
+.search-btn {
+  border: 1px solid #1F2F54;
+  background-color: #1F2F54;
+  color: #FFFFFF;
+  height: 48px;
+  padding: 0 145px;
+  font-size: 17px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: 100%;
+}
