@@ -19,6 +19,7 @@ class Plan extends Model
         return $this->belongsTo('App\Hotel');
     }
 
+
     protected $fillable = [
       'hotel_id',
       'name',
@@ -27,15 +28,17 @@ class Plan extends Model
       'plan_exist',
     ];
 
+
     public static $rules = [
-      'hotel_id'  => ['required', 'numeric', 'digits:10'],
+      'hotel_id'  => ['not_in:0', 'numeric', 'digits:10'],
       'name'      => ['required', 'string', 'max:50'],
       'price'     => ['required', 'numeric', 'min:0'],
       'room'      => ['required', 'numeric', 'min:0'],
     ];
 
+
     public static $messages = [
-      'hotel_id.required'  => 'ホテルIDは必須入力項目です。',
+      'hotel_id.not_in'    => 'ホテルIDを選択して下さい。',
       'hotel_id.numeric'   => 'ホテルIDは数字で入力して下さい。',
       'hotel_id.digits'    => 'ホテルIDは10桁で入力して下さい。',
       'name.required'      => '名前は必須入力項目です。',
