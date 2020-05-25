@@ -22,46 +22,41 @@ class HotelsController extends Controller
     {
       return view('admin.hotel.inputSearch');
     }
+
     // 宿一覧検索結果画面
     public function search(Request $request)
     {
-
-      // $hotels = Hotel::where('name', 'like', '%' . $request->hotelname . '%')->get();
-      // return view('admin.hotel.search',['hotels' => $hotels,
-      //                                   'keyword' => $request->hotelname
-      //                                 ]);
-
       $this->validate($request, [
         'name'     => ['max:50'],
         'type_id'  => ['numeric', 'between:0,6'],
       ], [
-        'name.string'     => '1',
-        'name.max'        => '2',
-        'type_id.numeric' => '3',
-        'type_id.between' => '4',
+        'name.max'        => '宿名は50文字以内で入力して下さい。',
+        'type_id.numeric' => '宿タイプの選択が正しくありません。',
+        'type_id.between' => '宿タイプの選択が正しくありません。',
       ]);
       $name = $request->name;
       $type_id = $request->type_id;
-      if(isset($name) === true and isset($type_id) === true and $type_id != 0) {
-        //dd('input name and type_id');
-        $hotels = Hotel::where('name', 'like',"%$name%")
-                         ->where('type_id', $type_id)->get();
-        // $type = Type::find($type_id);
-        // $type_name = $type->name;
-        // $in_msg = $type_name . 'に属する宿名：' . $name;
-        return view('admin.hotel.search', ['hotels' => $hotels, 'keyword' => $name]);
-      } else if(isset($name) === true and isset($type_id) === true and $type_id == 0) {
-        //dd('input name');
-        $hotels = Hotel::where('name', 'like',"%$name%")->get();
-        // $in_msg = $name;
-        return view('admin.hotel.search', ['hotels' => $hotels, 'keyword' => $name]);
+      if(isset($name) === true and isset($type_id) === true) {
+        if($type_id != 0) {
+          //dd('input name and type_id');
+          $hotels = Hotel::where('name', 'like', "%$name%")->where('type_id', $type_id)->where('hotel_exist', 1)->get();
+          $type = Type::find($type_id);
+          $type_name = $type->name;
+          $keyword = '宿名：' . $name . '』と『宿タイプ：' . $type_name;
+          return view('admin.hotel.search', ['hotels' => $hotels, 'keyword' => $keyword]);
+        } else if($type_id == 0) {
+          //dd('input name');
+          $hotels = Hotel::where('name', 'like',"%$name%")->where('hotel_exist', 1)->get();
+          $keyword = '宿名：' . $name;
+          return view('admin.hotel.search', ['hotels' => $hotels, 'keyword' => $keyword]);
+        }
       } else if(isset($type_id) === true and $type_id != 0) {
         //dd('input type_id');
-        $hotels = Hotel::where('type_id', $type_id)->get();
-        // $type = Type::find($type_id);
-        // $type_name = $type->name;
-        // $in_msg =  $type_name . 'に属する宿';
-        return view('admin.hotel.search', [ 'hotels' => $hotels, 'keyword' => $name]);
+        $hotels = Hotel::where('type_id', $type_id)->where('hotel_exist', 1)->get();
+        $type = Type::find($type_id);
+        $type_name = $type->name;
+        $keyword = '宿タイプ：' . $type_name;
+        return view('admin.hotel.search', ['hotels' => $hotels, 'keyword' => $keyword]);
       } else {
         $in_msg = '宿名もしくは宿タイプを入力してください。';
         return redirect('/admin/hotel/search/input')
@@ -73,7 +68,6 @@ class HotelsController extends Controller
     // 宿の登録入力画面
     public function create(Request $request)
     {
-
       return view('admin.hotel.add');//テンプレート変更の必要有り
     }
 
@@ -99,7 +93,19 @@ class HotelsController extends Controller
     public function show($id)
     {
         $hotel = Hotel::find($id);
-        return view('admin.hotel.show',['hotel'=> $hotel]);
+        if(isset($hotel) === true) {
+          if($hotel->hotel_exist == 1) {
+            return view('admin.hotel.show', ['hotel'=> $hotel]);
+          } else {
+            $msg = '指定した宿は削除されています。';
+            return redirect('/admin/home')//リダイレクト先の変更の必要あり
+                     ->with('msg', $msg);
+          }
+        } else {
+          $msg = '指定した宿は存在しません。';
+          return redirect('/admin/home')//リダイレクト先の変更の必要あり
+                   ->with('msg', $msg);
+        }
     }
 
     // 宿編集画面
@@ -108,7 +114,7 @@ class HotelsController extends Controller
       $hotel = Hotel::find($id);
       if(isset($hotel) === true) {
         if($hotel->hotel_exist == 1) {
-          return view('admin.hotel.edit', ['form'=>$hotel]);//テンプレート変更の必要有り
+          return view('admin.hotel.edit', ['form'=>$hotel]);
         } else {
           $msg = '指定した宿は削除されています。';
           return redirect('/admin/home')//リダイレクト先の変更の必要あり
@@ -143,8 +149,8 @@ class HotelsController extends Controller
           unset($form['_token']);
           $hotel->fill($form)->save();
           return view('admin.hotel.update');
-          } else {
-          $msg = '指定した宿泊プランは削除されています。';
+        } else {
+          $msg = '指定した宿は削除されています。';
           return redirect('/admin/home')//リダイレクト先の変更の必要あり
                    ->with('msg', $msg);
         }

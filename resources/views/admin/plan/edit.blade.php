@@ -24,8 +24,11 @@
                             <label for="hotel_id" class="">宿名</label>
 
                             <div class="col-md-6">
-                                <select id="hotel_id" class="form-control @error('hotel_id') is-invalid @enderror" name="type_id"  value="{{ $form->hotel_id') }}" required>
+                                <select id="hotel_id" class="form-control @error('hotel_id') is-invalid @enderror" name="hotel_id"  value="{{ $form->hotel_id }}" required>
                                   @foreach($hotels as $hotel)
+                                    @if($form->hotel_id === $hotel->id)
+                                      <option value="{{$hotel->id}}" selected>{{$hotel->name}}</option>
+                                    @endif
                                     <option value="{{$hotel->id}}">{{$hotel->name}}</option>
                                   @endforeach
                                 </select>
@@ -42,7 +45,7 @@
                             <label for="name" class="">プラン名</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $form->name) }}" required autocomplete="name">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $form->name }}" required autocomplete="name">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +59,7 @@
                             <label for="price" class="">金額</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ $form->price') }}" required >
+                                <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ $form->price }}" required >
 
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -70,7 +73,7 @@
                             <label for="room" class="">部屋数</label>
 
                             <div class="col-md-6">
-                                <input id="room" type="number" class="form-control @error('room') is-invalid @enderror" name="room" value="{{ $form->room') }}" required>
+                                <input id="room" type="number" class="form-control @error('room') is-invalid @enderror" name="room" value="{{ $form->room }}" required>
 
                                 @error('room')
                                     <span class="invalid-feedback" role="alert">

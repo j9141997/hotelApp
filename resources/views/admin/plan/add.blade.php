@@ -45,7 +45,7 @@
                             <label for="name" class="">プラン名</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('$plan->name') }}" required autocomplete="name" placeholder="例）日帰りプラン">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="例）日帰りプラン">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
                             <label for="price" class="">金額</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('$plan->price') }}" required >
+                                <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required >
 
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -73,7 +73,7 @@
                             <label for="room" class="">部屋数</label>
 
                             <div class="col-md-6">
-                                <input id="room" type="number" class="form-control @error('room') is-invalid @enderror" name="room" value="{{ old('$plan->room') }}" required>
+                                <input id="room" type="number" class="form-control @error('room') is-invalid @enderror" name="room" value="{{ old('room') }}" required>
 
                                 @error('room')
                                     <span class="invalid-feedback" role="alert">
