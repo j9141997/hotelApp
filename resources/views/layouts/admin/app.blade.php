@@ -14,7 +14,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -30,23 +30,24 @@
     .header-title {
         font-size: 32px;
         padding: 10px;
-        background: #FFFF00;
+        background: #a6fba9;
     }
     .header-title > a {
-        color: #1F2F54;
+        color: #fff;
     }
     .header-title > a:hover {
-        color: #1F2F54;
+        color: #fff;
         text-decoration: none;
     }
 
     ul.header-menu {
-        border-bottom: solid 20px #FFFF00;
+        border-bottom: solid 20px #a6fba9;
         background-color: #FFFFFF;
         display: flex;
         justify-content: flex-end;
         list-style: none;
         padding-right: 40px;
+        margin: 0;
     }
 
     li.menu-list {
@@ -58,6 +59,13 @@
     li.menu-list > a {
         text-decoration: none;
         color: #1F2F54;
+    }
+    .err_message {
+        height: 32px;
+        text-align: center;
+        line-height: 32px;
+        background-color: #e63946;
+        color: #fff;
     }
 
     /* フッター */
@@ -110,6 +118,11 @@
                     </li>
                 @endunless
             </ul>
+            @if (session('msg'))
+                <div class="err_message">
+                    {{ session('msg') }}
+                </div>
+            @endif
         </header>
         <main class="py-4">
             @yield('content')

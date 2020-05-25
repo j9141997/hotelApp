@@ -1,11 +1,8 @@
-@extends('layouts.user.app')
+@extends('layouts.admin.app')
 @section('content')
   <article class="self-container">
       <div class="mx-5">
         <h2 class="ml-5 minititle3">宿を探す</h2></div>
-        @if(session('in_msg') !== null)
-          {{session('in_msg')}}
-        @endif
       <section>
         <span class="row ml-5">
           <span class="ml-5 minititle4">宿名で探す</span>

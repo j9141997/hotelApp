@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body auth-form-content">
                 <form method="POST" action="{{ route('user.register') }}">
                         @csrf
                         <div class="heading">

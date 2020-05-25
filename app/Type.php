@@ -10,4 +10,9 @@ class Type extends Model
     {
         return $this->hasMany('App\Hotel');
     }
+
+    public function plans()
+    {
+        return $this->hasMany('App\Plan');
+    }
 }

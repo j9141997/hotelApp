@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.admin.app')
 
 @section('content')
 <div class="container">
@@ -8,7 +8,6 @@
         <div class="card-body user-results">
           <div class="heading">
           <h2>『{{ $input }}』の検索結果</h2>
-            {{-- <h2>{{ $input }}の検索結果</h2> --}}
           </div>
           @if (!$users->isEmpty())
             @foreach ($users as $user)

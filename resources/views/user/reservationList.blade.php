@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-  <h2>予約履歴</h2>
   <div class="main-content">
+    <h2>予約履歴</h2>
     @foreach ($reseravtions as $reservation)
       <div class="reservation-list">
         <div class="plan-name">

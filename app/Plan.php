@@ -19,6 +19,11 @@ class Plan extends Model
         return $this->belongsTo('App\Hotel');
     }
 
+    public function type()
+    {
+        return $this->belongsTo('App\Type');
+    }
+
 
     protected $fillable = [
       'hotel_id',

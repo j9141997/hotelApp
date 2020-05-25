@@ -48,27 +48,6 @@ class UsersController extends Controller
         return view('admin.user.edit', ['user' => $user]);
     }
 
-    // public function editConfirm(User $user, Request $request)
-    // {
-    //     $this->validate($request, User::$rules);
-    //     $user->name = $request->name;
-    //     $user->postal = $request->postal;
-    //     $user->address = $request->address;
-    //     $user->tel  = $request->tel;
-    //     $user->birthday = $request->birthday;
-    //     $sesdata = $request->session()->put([
-    //         'name'     => $request->name,
-    //         'postal'   => $request->postal,
-    //         'address'  => $request->address,
-    //         'tel'      => $request->tel,
-    //         'birthday' => $request->birthday
-    //     ]);
-    //     return view('admin.user.editConfirm', [
-    //         'user' => $user,
-    //         'session_data' => $sesdata,
-    //     ]);
-    // }
-
     public function update(User $user, Request $request)
     {
         $this->validate($request, User::$rules);
@@ -83,13 +62,29 @@ class UsersController extends Controller
 
     public function destroyConfirm(User $user)
     {
+        // 今日の日付を定義
+        $today = date('Y-m-d', strtotime('day'));
+        // チェックイン日が未来にあるか
+        if ($user->reservations->where('checkin_day', '>', $today)->first()) {
+            $msg = '会員がすでに予約している宿泊プランが存在しています';
+            return redirect("admin/user/$user->id")
+                ->with('msg', $msg);
+        }
         return view('admin.user.destroyConfirm', ['user' => $user]);
     }
 
     public function destroy(User $user)
     {
+        // 今日の日付を定義
+        $today = date('Y-m-d', strtotime('day'));
+        // チェックイン日が未来にあるか
+        if ($user->reservations->where('checkin_day', '>', $today)->first()) {
+            $msg = '会員がすでに予約している宿泊プランが存在しています';
+            return redirect("admin/user/$user->id")
+                ->with('msg', $msg);
+        }
         if ($user->delete()) {
-            return redirect(route('admin.home.index'));
+            return view('admin.user.destroyCompleted');
         }
     }
 }

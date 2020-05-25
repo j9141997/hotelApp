@@ -118,12 +118,6 @@
                             <div class="col-md-6">
                                 <input id="image" type="file" accept="image/*" name="image" value="test">
                                 <img src="/storage/{{$form->image}}">
-
-                                {{--@error('image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror--}}
                                 @error('image')
                                    <div class="notice">{{$message}}</div>
                                 @enderror

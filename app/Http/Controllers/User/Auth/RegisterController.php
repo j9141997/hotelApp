@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::COMPLETEDREGISTER;
 
     /**
      * Create a new controller instance.
@@ -76,22 +76,6 @@ class RegisterController extends Controller
         ]);
     }
 
-
-    public function createConfirm(Request $request)
-    {
-        $user = new User;
-        $this->validate($request, User::$regist_rules);
-        $form = $request->all();
-        unset($form['_token']);
-        if ($user->fill($form)){
-            $sesdata = $request->session()->put([
-                'user' => $user,
-            ]);
-            return view('user.createConfirm', ['user' => $user, ]);
-        }
-
-
-    }
     // 登録処理
     protected function create(array $data)
     {
@@ -104,6 +88,5 @@ class RegisterController extends Controller
             'birthday' => $data['birthday'],
             'password' => Hash::make($data['password']),
         ]);
-        // return redirect()->route('user.completed', ['user' => $user->id]);
     }
 }

@@ -1,8 +1,20 @@
 /* 吉田CSS */
 
 /* 全体 */
+* {
+  font-family: 'Noto Sans JP', sans-serif;
+}
 .card-body {
   margin: 0 auto;
+  background-color: #ffffff;
+}
+
+.auth-form-content {
+  width: 410px;
+}
+
+.invalid-feedback {
+  width: 230px;
 }
 
 .admin-home {
@@ -163,7 +175,7 @@
 }
 
 .to-detail {
-  margin: 0 20px 4px 0;
+  margin-bottom: 1px;
   height: 32px;
   width: 60px;
   background-color: #1F2F54;
@@ -187,12 +199,15 @@
 /* トップページ */
 .hotel-list {
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
   height: 200px !important;
+  background-color: #fff;
 }
 
 .time {
   display: flex;
+  margin-left: 0.5rem;
 }
 
 .time > .checkin-time {
@@ -257,32 +272,29 @@
 
 /* 宿詳細画面＆宿泊プラン一覧＆口コミ投稿 */
 /*!!!!!!!!!!!!!!!宮内!!!!!!!!!!!!!!!!*/
-body {background-color: #e8e8e8;}
+body {background-color: #e6e6e6;}
 /* 宿検索結果一覧画面 */
 .minititle3{
-  font-size: xx-large;
+  font-size: large;
   font-weight: 800;
-  color: #000033;
+  color: #1F2F54;
 }
 div.detail{
   margin-top: 20px;
   margin-bottom: 20px;
 }
-img {
-      width: 130px;
-      height: 130px;
-      object-fit: cover;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
 div.under {
   border-bottom: dotted 2px #1F2F54;
           }
 span.title{
             font-weight: 800;
-            font-size: x-large;
+            font-size: large;
             display: inline-block;
           }
+
+span.toppage-title {
+  font-size: x-large;
+}
 span.hoteltype{
               text-align: right;
               display: inline-block;
@@ -291,10 +303,9 @@ span.hoteltype{
                 background-color: #e8e8e8;
               }
 div.item-container{
-                background-color: white;
-                margin-bottom: 20px;
-                height: 150px;
-                  }
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
+}
 
 /* 宿詳細画面＆宿泊プラン一覧＆口コミ投稿 */
 .ditail2{
@@ -304,12 +315,12 @@ div.item-container{
 }
 .minititle1{
     color: #FFFFFF;
-    background-color: #000033;
+    background-color: #1F2F54;
     font-size: 1em;
-    font-weight: bold;
     padding: 5px;
     width: 100px;
-    }
+    border-radius: 2px;
+}
 .font1{
   font-size: 15px;
 }
@@ -330,7 +341,33 @@ textarea{
   resize: none;
 }
 .review-textarea {
-  border: 2px solid #000033;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
+  border: none;
+  padding: 10px;
+  width: 100%;
+  background-color: #f8f8f8;
+  border-bottom: 2px solid #1F2F54;
+}
+
+.review-textarea:focus {
+  outline: none;
+
+}
+
+.plan-detail {
+  text-align: right;
+  margin: 4px 4px 0 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+.detail-remaining,
+.detail-price {
+  width: 100px;
+}
+.detail-remaining {
+ text-align: center;
 }
 
 .search1{
@@ -344,22 +381,12 @@ textarea{
   border-width: 2px;
 }
 
-span.title{
-    font-weight: 800;
-    font-size: x-large;
-    display: inline-block;
-}
 span.hoteltype{
     text-align: right;
     display: inline-block;
 }
 .self-container{
   background-color: #e8e8e8;
-}
-div.item-container{
-  background-color: white;
-  margin-bottom: 20px;
-  height: 150px;
 }
 div.detail{
   margin-top: 20px;
@@ -371,8 +398,7 @@ div.detail{
   align-items: flex-end;
 }
 /* 宿検索結果一覧画面 */
-img {
-      width: 130px;
+img.toppage-image {
       height: 130px;
       object-fit: cover; /* この一行を追加するだけ！ */
       margin-top: 10px;
@@ -449,3 +475,78 @@ input:-ms-input-placeholder{
   margin-bottom: 10px;
   width: 100%;
 }
+
+.review {
+  margin-bottom: 6px;
+}
+
+.review-user {
+  font-size: 13px;
+  font-weight: bold;
+}
+.review-btn {
+  height: 42px;
+  width: 84px;
+}
+
+.to-reservationBtn {
+  height: 34px;
+  width: 74px;
+}
+
+.blue-btn {
+  background-color: #1F2F54;
+  border: 1px solid #1F2F54;
+  border-radius: 4px;
+  color: #fff;
+}
+
+/* 吉田CSS2 */
+
+.item-content {
+  background-color: white;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.detail-img {
+  max-height: 160px;
+  width: 100%;
+}
+
+/* 管理者詳細 */
+.item-deleteBtn {
+  background-color: #EFEFEF;
+  border: 1px solid #EFEFEF;
+  color: #1F2F54;
+  margin-left: 8px;
+  border-radius: 4px;
+}
+
+.main-content {
+  background-color: #fff;
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.review-lists {
+  background-color: #f8f8f8;
+  color: #484848;
+  overflow: scroll;
+}
+.hotel-action {
+  justify-content: start;
+}
+
+.container > section {
+  background-color: #fff;
+}
+
+.hotel-list > .image-section {
+  text-align: center;
+  width: 200px;
+}
+

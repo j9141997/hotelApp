@@ -13,9 +13,8 @@ class UsersController extends Controller
     // 新規登録完了画面
     public function completed(User $user)
     {
-        return view('user.completed');
+        return view('user.createCompleted');
     }
-
 
     // 編集画面
     public function edit(User $user)
@@ -27,27 +26,19 @@ class UsersController extends Controller
             return redirect()->route('user.home.index');
         }
     }
-    
-    // // 編集確認画面
-    // public function editConfirm(User $user)
-    // {
-    //     return view('user.editConfirm', ['user' => $user]);
-    // }
 
+    // 会員情報変更 && 完了画面
     public function update(User $user, Request $request)
     {
         $this->validate($request, User::$rules);
         $form = $request->all();
         unset($form['_token']);
         if ($user->fill($form)->save()) {
-            return redirect()->route('user.completed', ['user' => $user->id]);
-        }
-    }
-
-    public function destroy(User $user)
-    {
-        if ($user->delete()) {
-            return redirect('/');
+            return view('user.updateCompleted', ['user' => $user->id]);
+        } else {
+            $msg = '会員情報の変更に失敗しました';
+            return redirect('/')
+                ->with('msg', $msg);
         }
     }
 
@@ -57,15 +48,59 @@ class UsersController extends Controller
         // 今日の日付を定義
         $today = date('Y-m-d', strtotime('day'));
 
-        // ログインしているユーザーIDと削除予定のユーザーIDが一致しているか
-        if ( Auth::guard('user')->check() && 
-            Auth::id() == $user->id && 
-            $user->resercations->where('checkin_day', '<', $today)) {
-            return view('user.destroyConfirm', ['user' => $user]);
-        } else {
-            // TOPページにリダイレクトする
-            return redirect()->route('user.home.index');
+        // ログインしているか
+        if (!Auth::guard('user')->check()) {
+            $msg = 'ログインをしてください';
+            return redirect('/')
+                ->with('msg', $msg);
         }
+        // ログインユーザーと削除予定のユーザーIDが一致しているか
+        if (Auth::id() !== $user->id) {
+            $msg = 'ログインしているユーザーIDと一致しません';
+            return redirect('/')
+                ->with('msg', $msg);
+        }
+        // チェックイン日が未来にあるか
+        if ($user->reservations->where('checkin_day', '>', $today)->first()) {
+            $msg = 'すでに予約している宿泊プランが存在しています';
+            return redirect('/')
+                ->with('msg', $msg);
+        }
+
+        return view('user.destroyConfirm', ['user' => $user]);
+    }
+
+    public function destroy(User $user)
+    {
+        // 今日の日付を定義
+        $today = date('Y-m-d', strtotime('day'));
+
+        // ログインしているか
+        if (!Auth::guard('user')->check()) {
+            $msg = 'ログインをしてください';
+            return redirect('/')
+                ->with('msg', $msg);
+        }
+        // ログインユーザーと削除予定のユーザーIDが一致しているか
+        if (Auth::id() !== $user->id) {
+            $msg = 'ログインしているユーザーIDと一致しません';
+            return redirect('/user/destroy/completed');
+        }
+        // チェックイン日が未来にあるか
+        if ($user->reservations->where('checkin_day', '>', $today)->first()) {
+            $msg = 'すでに予約している宿泊プランが存在しています';
+            return redirect('/')
+                ->with('msg', $msg);
+        }
+
+        if ($user->delete()) {
+            return redirect('/user/destroy/completed');
+        }
+    }
+
+    public function destroyCompleted()
+    {
+        return view('user.destroyCompleted');
     }
 
     // 予約履歴
