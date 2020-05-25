@@ -19,6 +19,11 @@ class Hotel extends Model
     return $this->hasMany('App\Plan');
   }
 
+  public function reviews()
+  {
+    return $this->hasMany('App\Review');
+  }
+
 
   protected $fillable = [
     'name',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Hotel;
+use App\Plan;
 use App\Type;
 
 class HotelsController extends Controller
@@ -38,39 +39,35 @@ class HotelsController extends Controller
       $type_id = $request->type_id;
       if(isset($name) === true and isset($type_id) === true) {
         if($type_id != 0) {
-          //dd('input name and type_id');
           $hotels = Hotel::where('name', 'like', "%$name%")->where('type_id', $type_id)->where('hotel_exist', 1)->get();
           $type = Type::find($type_id);
           $type_name = $type->name;
           $keyword = '宿名：' . $name . '』と『宿タイプ：' . $type_name;
           return view('admin.hotel.search', ['hotels' => $hotels, 'keyword' => $keyword]);
         } else if($type_id == 0) {
-          //dd('input name');
           $hotels = Hotel::where('name', 'like',"%$name%")->where('hotel_exist', 1)->get();
           $keyword = '宿名：' . $name;
           return view('admin.hotel.search', ['hotels' => $hotels, 'keyword' => $keyword]);
         }
       } else if(isset($type_id) === true and $type_id != 0) {
-        //dd('input type_id');
         $hotels = Hotel::where('type_id', $type_id)->where('hotel_exist', 1)->get();
         $type = Type::find($type_id);
         $type_name = $type->name;
         $keyword = '宿タイプ：' . $type_name;
         return view('admin.hotel.search', ['hotels' => $hotels, 'keyword' => $keyword]);
       } else {
-        $in_msg = '宿名もしくは宿タイプを入力してください。';
+        $msg = '宿名もしくは宿タイプを入力してください。';
         return redirect('/admin/hotel/search/input')
-                 ->with('in_msg', $in_msg);
+                 ->with('msg', $msg);
       }
     }
-    // 宿の保存 & 宿完了画面
-
     // 宿の登録入力画面
     public function create(Request $request)
     {
       return view('admin.hotel.add');//テンプレート変更の必要有り
     }
 
+    // 宿の保存 & 宿完了画面
     public function store(Request $request)
     {
       $this->validate($request, Hotel::$mainRules, Hotel::$messages);
@@ -95,7 +92,13 @@ class HotelsController extends Controller
         $hotel = Hotel::find($id);
         if(isset($hotel) === true) {
           if($hotel->hotel_exist == 1) {
-            return view('admin.hotel.show', ['hotel'=> $hotel]);
+            $plans = Plan::where('hotel_id', $hotel->id)
+                            ->where('plan_exist', 1)
+                            ->get();
+            return view('admin.hotel.show', [
+              'hotel' => $hotel,
+              'plans' => $plans
+              ]);
           } else {
             $msg = '指定した宿は削除されています。';
             return redirect('/admin/home')//リダイレクト先の変更の必要あり
@@ -135,7 +138,6 @@ class HotelsController extends Controller
         if($hotel->hotel_exist == 1) {
           $this->validate($request, Hotel::$mainRules, Hotel::$messages);
           if(isset($request->image) === true) {
-            //dd('Image!');
             $this->validate($request, Hotel::$imageRules, Hotel::$messages);
             $form = $request->all();
             //画像の処理
@@ -143,12 +145,11 @@ class HotelsController extends Controller
             $path = $form['image']->store('public');
             $form['image'] = str_replace('public/', '', $path);
           } else {
-            //dd('No image!');
             $form = $request->all();
           }
           unset($form['_token']);
           $hotel->fill($form)->save();
-          return view('admin.hotel.update');
+          return view('admin.hotel.update', ['hotel_id' => $hotel->id]);
         } else {
           $msg = '指定した宿は削除されています。';
           return redirect('/admin/home')//リダイレクト先の変更の必要あり
@@ -162,12 +163,12 @@ class HotelsController extends Controller
     }
 
     // 宿削除確認画面
-    public function destroyConfirm($id)//Request $request)
+    public function destroyConfirm($id)
     {
       $hotel = Hotel::find($id);
       if(isset($hotel) === true) {
         if($hotel->hotel_exist == 1) {
-          return view('admin.hotel.test3', ['form'=>$hotel]);//テンプレート変更の必要有り
+          return view('admin.hotel.destroyConfirm', ['form'=>$hotel]);//テンプレート変更の必要有り
         } else {
           $msg = '指定した宿は削除されています。';
           return redirect('/admin/home')//リダイレクト先の変更の必要あり

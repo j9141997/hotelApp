@@ -93,7 +93,7 @@ class PlansController extends Controller
                   $form = $request->all();
                   unset($form['_token']);
                   $plan->fill($form)->save();
-                  return view('admin.plan.update');
+                  return view('admin.plan.update', ['hotel_id' => $hotel->id]);
                 } else {
                   $msg = '指定した宿は削除されています。';
                   return redirect('/admin/home')//リダイレクト先の変更の必要有り
@@ -122,15 +122,15 @@ class PlansController extends Controller
           $plan = Plan::find($id);
           if(isset($plan) === true) {
             if($plan->plan_exist == 1) {
-              return view('admin.plan.test3', ['form'=>$plan]);//テンプレート変更の必要有り
+              return view('admin.plan.destroyConfirm', ['form'=>$plan]);//テンプレート変更の必要有り
             } else {
               $msg = '指定した宿泊プランは削除されています。';
-              return redirect('/admin/home')//リダイレクト先の変更の必要有り
+              return redirect('/admin/home')
                        ->with('msg', $msg);
             }
           } else {
             $msg = '指定した宿泊プランは存在しません。';
-            return redirect('/admin/home')//リダイレクト先の変更の必要有り
+            return redirect('/admin/home')
                      ->with('msg', $msg);
           }
         }
@@ -143,15 +143,15 @@ class PlansController extends Controller
             if($plan->plan_exist == 1) {
               $plan->plan_exist = 0;
               $plan->save();
-              return view('admin.plan.destroy');
+              return view('admin.plan.destroy', ['hotel_id' => $plan->hotel_id]);
             } else {
-              $msg = '指定した宿泊プランは削除されています。';
-              return redirect('/admin/home')//リダイレクト先の変更の必要有り
+              $msg = '指定した宿泊  プランは削除されています。';
+              return redirect('/admin/home')
                        ->with('msg', $msg);
             }
           } else {
             $msg = '指定した宿泊プランは存在しません。';
-            return redirect('/admin/home')//リダイレクト先の変更の必要有り
+            return redirect('/admin/home')
                      ->with('msg', $msg);
           }
         }

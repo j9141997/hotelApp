@@ -21,6 +21,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
+
     });
 });
 
@@ -28,12 +29,11 @@ Route::middleware('auth:user')->group(function () {
 
     // TOPページ
     Route::resource('user', 'UsersController', ['only' => ['edit', 'update', 'destroy']]);
-    Route::get('user/{user}/completed', 'UsersController@completed')->name('user.completed');
+    // ユーザー新規登録完了画面
+    Route::get('user/register/completed', 'UsersController@completed');
     Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
     Route::get('user/{user}/reservationlist', 'UsersController@reservationList')->name('user.reservationlist');
-    // Route::get('user/{user}/edit/confirm', 'UsersController@editConfirm')->name('user.edit.confirm');
-    // Route::get('user/{user}/create/confirm', 'UsersController@createConfirm')->name('user.create.confirm');
-    // Route::get('user/{user}/destroy/confirm', 'UsersController@destroyConfirm')->name('user.destroy.confirm');
+
 
     // 宿泊プラン関連（予約・変更・キャンセル）
     Route::resource('plan/{plan}/reservation', 'User\ReservationsController');
@@ -46,6 +46,9 @@ Route::middleware('auth:user')->group(function () {
 Route::resource('hotel', 'User\HotelsController', ['only' => 'show']);
 Route::get('hotel/search/input', 'User\HotelsController@inputSearch');
 Route::get('hotel/search/result', 'User\HotelsController@search');
+
+// 退会完了画面
+Route::get('user/destroy/completed', 'UsersController@destroyCompleted');
 
 
 

@@ -37,7 +37,7 @@ class ReservationsController extends Controller
         $reservation->checkout_day = $request->checkout_day;
         unset($request['_token']);
         if ($reservation->save()) {
-            return redirect('user.hotel.store');
+            return view('user.hotel.store');
         }
     }
 
@@ -86,7 +86,7 @@ class ReservationsController extends Controller
         // ログインユーザーIDと予約したユーザーIDが一致しているかどうか
         if ( Auth::id() == $reservation->user_id) {
             if ($reservation->delete()) {
-                return redirect('user.hotel.destroy');
+                return view('user.hotel.destroy');
                 // 完了画面が完成したらパスを変更する予定です！ by 吉田
             }
         } else {

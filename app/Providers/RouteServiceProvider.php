@@ -25,6 +25,9 @@ class RouteServiceProvider extends ServiceProvider
     // Userのリダイレクト先
     public const HOME = '/';
 
+    // Userの会員登録完了リダイレクト先
+    public const COMPLETEDREGISTER = '/user/register/completed';
+
     // Adminのリダイレクト先
     public const ADMIN_HOME = '/admin/home';
     /**
