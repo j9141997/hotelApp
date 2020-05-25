@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -65,15 +66,46 @@ class RegisterController extends Controller
     // バリデーション
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name'     => ['required', 'string', 'max:50'],
-            'postal'   => ['required', 'string', 'max:7'],
-            'address'  => ['required', 'string', 'max:200'],
-            'tel'      => ['required', 'string', 'max:20'],
-            'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
-            'birthday' => ['required', 'date'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+
+        //日付(誕生日)の下限・上限設定(150年前)
+        $carbon = new Carbon();
+        $minDay = date('Y-m-d', strtotime($carbon->subYears(150)));
+        $maxDay = date('Y-m-d', strtotime($carbon->now()));
+        //入力値が日にちか否かを評価
+        $birthday = $data['birthday'];
+        if(strtotime($birthday)) {
+          //条件分岐で誕生日が数値であることを確認しているため、その他のバリデーションをチェック
+          return Validator::make($data, [
+              'name'     => ['required', 'string', 'max:50'],
+              'postal'   => ['required', 'string', 'max:7', 'min:7'],
+              'address'  => ['required', 'string', 'max:200'],
+              'tel'      => ['required', 'string', 'max:20'],
+              'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
+              'birthday' => ['required', 'date', 'after:'.$minDay, 'before:'.$maxDay],
+              'password' => ['required', 'string', 'min:6', 'confirmed'],
+          ]);
+        } else {
+          //バリデーション「numeric」により、誕生日が数値でないことをエラー表示する
+          return Validator::make($data, [
+              'name'     => ['required', 'string', 'max:50'],
+              'postal'   => ['required', 'string', 'max:7', 'min:7'],
+              'address'  => ['required', 'string', 'max:200'],
+              'tel'      => ['required', 'string', 'max:20'],
+              'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
+              'birthday' => ['required', 'date', 'after:'.$minDay, 'before:'.$maxDay, 'numeric'],
+              'password' => ['required', 'string', 'min:6', 'confirmed'],
+          ]);
+        }
+
+        // return Validator::make($data, [
+        //     'name'     => ['required', 'string', 'max:50'],
+        //     'postal'   => ['required', 'string', 'max:7', 'min:7'],
+        //     'address'  => ['required', 'string', 'max:200'],
+        //     'tel'      => ['required', 'string', 'max:20'],
+        //     'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
+        //     'birthday' => ['required', 'date', 'after:'.$minDay, 'before:'.$maxDay, 'numeric'],
+        //     'password' => ['required', 'string', 'min:6', 'confirmed'],
+        // ]);
     }
 
     // 登録処理
