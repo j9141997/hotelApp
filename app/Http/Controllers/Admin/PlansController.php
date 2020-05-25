@@ -19,7 +19,7 @@ class PlansController extends Controller
         public function create()
         {
           $hotels = HOTEL::all();
-          return view('admin.plan.add', ['hotels' => $hotels ]);
+          return view('admin.plan.add', ['hotels' => $hotels]);
         }
 
         // 宿泊プラン登録 & 宿泊プラン完了画面
@@ -37,12 +37,12 @@ class PlansController extends Controller
               return view('admin.plan.store');
             } else {
               $msg = '指定したホテルIDは削除されています。';
-              return redirect('/admin/home')//リダイレクト先の変更の必要有り
+              return redirect('/admin/plan/create')//リダイレクト先の変更の必要有り
                        ->with('msg', $msg);
             }
           } else {
             $msg = '指定したホテルIDは存在しません。';
-            return redirect('/admin/home')//リダイレクト先の変更の必要有り
+            return redirect('/admin/plan/create')//リダイレクト先の変更の必要有り
                      ->with('msg', $msg);
           }
         }
@@ -51,29 +51,30 @@ class PlansController extends Controller
         public function edit($id)
         {
           $plan = Plan::find($id);
-          $hotel = Hotel::find($plan->hotel_id);
-          if(isset($hotel) === true) {
-            if($hotel->hotel_exist == 1) {
-              if(isset($plan) === true) {
-                if($plan->plan_exist == 1) {
-                  return view('admin.plan.test2', ['form'=>$plan]);//テンプレート変更の必要有り
+          if(isset($plan) === true) {
+            if($plan->plan_exist == 1) {
+              $hotel = Hotel::find($plan->hotel_id);
+              if(isset($hotel) === true) {
+                if($hotel->hotel_exist == 1) {
+                  $hotels = Hotel::all();
+                  return view('admin.plan.edit', ['form'=>$plan, 'hotels'=>$hotels]);
                 } else {
-                  $msg = '指定した宿泊プランは削除されています。';
+                  $msg = '指定した宿泊プランの宿は削除されています。';
                   return redirect('/admin/home')//リダイレクト先の変更の必要有り
                            ->with('msg', $msg);
                 }
               } else {
-                $msg = '指定した宿泊プランは存在しません。';
+                $msg = '指定した宿泊プランの宿は存在しません。';
                 return redirect('/admin/home')//リダイレクト先の変更の必要有り
                          ->with('msg', $msg);
               }
             } else {
-              $msg = '指定したホテルIDは削除されています。';
+              $msg = '指定した宿泊プランは削除されています。';
               return redirect('/admin/home')//リダイレクト先の変更の必要有り
                        ->with('msg', $msg);
             }
           } else {
-            $msg = '指定したホテルIDは存在しません。';
+            $msg = '指定した宿泊プランは存在しません。';
             return redirect('/admin/home')//リダイレクト先の変更の必要有り
                      ->with('msg', $msg);
           }
@@ -83,33 +84,33 @@ class PlansController extends Controller
         public function update(Request $request, $id)
         {
           $this->validate($request, Plan::$rules, Plan::$messages);
-          $hotel = Hotel::find($request->hotel_id);
-          if(isset($hotel) === true) {
-            if($hotel->hotel_exist == 1) {
-              $plan = Plan::find($id);
-              if(isset($plan) === true) {
-                if($plan->plan_exist == 1) {
+          $plan = Plan::find($id);
+          if(isset($plan) === true) {
+            if($plan->plan_exist == 1) {
+              $hotel = Hotel::find($request->hotel_id);
+              if(isset($hotel) === true) {
+                if($hotel->hotel_exist == 1) {
                   $form = $request->all();
                   unset($form['_token']);
                   $plan->fill($form)->save();
                   return view('admin.plan.update');
                 } else {
-                  $msg = '指定した宿泊プランは削除されています。';
+                  $msg = '指定した宿は削除されています。';
                   return redirect('/admin/home')//リダイレクト先の変更の必要有り
                            ->with('msg', $msg);
                 }
               } else {
-                $msg = '指定した宿泊プランは存在しません。';
+                $msg = '指定した宿は存在しません';
                 return redirect('/admin/home')//リダイレクト先の変更の必要有り
                          ->with('msg', $msg);
               }
             } else {
-              $msg = '指定したホテルIDは削除されています。';
+              $msg = '指定した宿泊プランは削除されています。';
               return redirect('/admin/home')//リダイレクト先の変更の必要有り
                        ->with('msg', $msg);
             }
           } else {
-            $msg = '指定したホテルIDは存在しません';
+            $msg = '指定した宿泊プランは存在しません。';
             return redirect('/admin/home')//リダイレクト先の変更の必要有り
                      ->with('msg', $msg);
           }

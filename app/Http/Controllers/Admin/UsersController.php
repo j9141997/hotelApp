@@ -34,7 +34,13 @@ class UsersController extends Controller
 
     public function show($id) {
       $item = User::find($id);
-      return view('admin.user.detail', ['item'=>$item]);
+      if(isset($item) === true) {
+        return view('admin.user.detail', ['item'=>$item]);
+      } else {
+        $msg = '指定した会員は存在しません。';
+        return redirect('/admin/home')//リダイレクト先の変更の必要有り
+                 ->with('msg', $msg);
+      }
     }
 
     public function edit(User $user)
