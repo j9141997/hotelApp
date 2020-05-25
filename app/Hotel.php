@@ -64,7 +64,7 @@ class Hotel extends Model
       'postal.min'                => '郵便番号が正しくありません。',
       'address.required'          => '住所は必須入力項目です。',
       'address.string'            => '住所は文字列で入力して下さい。',
-      'address.max'               => '住所は50文字以内で入力して下さい。',
+      'address.max'               => '住所は200文字以内で入力して下さい。',
       'checkin_time.required'     => 'チェックイン時間は必須入力項目です。',
       'checkin_time.date_format'  => '時間として正しくない入力です。',
       'checkout_time.required'    => 'チェックアウト時間は必須入力項目です。',

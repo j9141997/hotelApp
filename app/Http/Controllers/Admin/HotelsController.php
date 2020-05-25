@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Hotel;
 use App\Plan;
 use App\Type;
+use App\Reservation;
 
 class HotelsController extends Controller
 {
@@ -168,15 +169,35 @@ class HotelsController extends Controller
       $hotel = Hotel::find($id);
       if(isset($hotel) === true) {
         if($hotel->hotel_exist == 1) {
-          return view('admin.hotel.destroyConfirm', ['form'=>$hotel]);//テンプレート変更の必要有り
+          //未宿泊の予約が無いかを調べる
+          $plan_id = Plan::where('hotel_id', $id)->select('id')->get();
+          if(!$plan_id->isEmpty()) {
+            $count = count($plan_id);
+            for($i=0; $i<$count; $i++) {
+              $reservation = Reservation::where('plan_id', $plan_id[$i]->id)->get();
+              if(!$reservation->isEmpty()) {
+                $countReserv = count($reservation);
+                for($j=0; $j<$countReserv; $j++) {
+                  $checkin_day = $reservation[$j]->checkin_day;
+                  $today = date('Y-m-d');
+                  if($checkin_day > $today) {
+                    $msg = '指定した宿には未宿泊の予約があります。';
+                    return redirect('/admin/home')
+                             ->with('msg', $msg);
+                  }
+                }
+              }
+            }
+          }
+          return view('admin.hotel.test3', ['form'=>$hotel]);
         } else {
           $msg = '指定した宿は削除されています。';
-          return redirect('/admin/home')//リダイレクト先の変更の必要あり
+          return redirect('/admin/home')
                    ->with('msg', $msg);
         }
       } else {
         $msg = '指定した宿は存在しません。';
-        return redirect('/admin/home')//リダイレクト先の変更の必要あり
+        return redirect('/admin/home')
                  ->with('msg', $msg);
       }
     }
@@ -187,17 +208,37 @@ class HotelsController extends Controller
       $hotel = Hotel::find($id);
       if(isset($hotel) === true) {
         if($hotel->hotel_exist == 1) {
+          //未宿泊の予約が無いかを調べる
+          $plan_id = Plan::where('hotel_id', $id)->select('id')->get();
+          if(!$plan_id->isEmpty()) {
+            $count = count($plan_id);
+            for($i=0; $i<$count; $i++) {
+              $reservation = Reservation::where('plan_id', $plan_id[$i]->id)->get();
+              if(!$reservation->isEmpty()) {
+                $countReserv = count($reservation);
+                for($j=0; $j<$countReserv; $j++) {
+                  $checkin_day = $reservation[$j]->checkin_day;
+                  $today = date('Y-m-d');
+                  if($checkin_day > $today) {
+                    $msg = '指定した宿には未宿泊の予約があります。';
+                    return redirect('/admin/home')
+                             ->with('msg', $msg);
+                  }
+                }
+              }
+            }
+          }
           $hotel->hotel_exist = 0;
           $hotel->save();
           return view('admin.hotel.destroy');
         } else {
           $msg = '指定した宿は削除されています。';
-          return redirect('/admin/home')//リダイレクト先の変更の必要有り
+          return redirect('/admin/home')
                    ->with('msg', $msg);
         }
       } else {
         $msg = '指定した宿は存在しません。';
-        return redirect('/admin/home')//リダイレクト先の変更の必要あり
+        return redirect('/admin/home')
                  ->with('msg', $msg);
       }
     }

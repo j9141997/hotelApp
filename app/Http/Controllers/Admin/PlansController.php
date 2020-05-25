@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Hotel;
 use App\Plan;
+use App\Reservation;
 
 class PlansController extends Controller
 {
@@ -122,7 +123,21 @@ class PlansController extends Controller
           $plan = Plan::find($id);
           if(isset($plan) === true) {
             if($plan->plan_exist == 1) {
-              return view('admin.plan.destroyConfirm', ['form'=>$plan]);//テンプレート変更の必要有り
+              //未宿泊の予約が無いかを調べる
+              $reservation = Reservation::where('plan_id', $id)->select('checkin_day')->get();
+              if(!$reservation->isEmpty()) {
+                $count = count($reservation);
+                for($i=0; $i<$count; $i++) {
+                  $checkin_day = $reservation[$i]->checkin_day;
+                  $today = date('Y-m-d');
+                  if($checkin_day > $today) {
+                    $msg = '指定した宿泊プランには未宿泊の予約があります。';
+                    return redirect('/admin/home')
+                             ->with('msg', $msg);
+                  }
+                }
+              }
+              return view('admin.plan.test3', ['form'=>$plan]);
             } else {
               $msg = '指定した宿泊プランは削除されています。';
               return redirect('/admin/home')
@@ -141,6 +156,20 @@ class PlansController extends Controller
           $plan = Plan::find($id);
           if(isset($plan) === true) {
             if($plan->plan_exist == 1) {
+              //未宿泊の予約が無いかを調べる
+              $reservation = Reservation::where('plan_id', $id)->select('checkin_day')->get();
+              if(!$reservation->isEmpty()) {
+                $count = count($reservation);
+                for($i=0; $i<$count; $i++) {
+                  $checkin_day = $reservation[$i]->checkin_day;
+                  $today = date('Y-m-d');
+                  if($checkin_day > $today) {
+                    $msg = '指定した宿泊プランには未宿泊の予約があります。';
+                    return redirect('/admin/home')
+                             ->with('msg', $msg);
+                  }
+                }
+              }
               $plan->plan_exist = 0;
               $plan->save();
               return view('admin.plan.destroy', ['hotel_id' => $plan->hotel_id]);
