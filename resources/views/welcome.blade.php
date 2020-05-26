@@ -4,7 +4,7 @@
 <div class="container">
   @foreach ($hotels as $hotel)
       <div class="row item-container hotel-list">
-      <div class="image-section"><img src="/storage/images/{{ $hotel->image }}" alt="" class="toppage-image"></div>
+      <div class="image-section"><img src="/storage/{{ $hotel->image }}" alt="" class="toppage-image"></div>
         <div class="col-md-9">
           <div class="under">
             <div class="mx-2">

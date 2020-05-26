@@ -24,7 +24,9 @@ class UsersController extends Controller
             return view('user.edit', ['user' => $user]);
         } else {
             // TOPページにリダイレクトする
-            return redirect()->route('user.home.index');
+            $msg = 'ユーザーIDが一致しません';
+            return redirect('/')
+                ->with('msg', $msg);
         }
     }
 
@@ -82,7 +84,7 @@ class UsersController extends Controller
         // チェックイン日が未来にあるか
         if ($user->reservations->where('checkin_day', '>', $today)->first()) {
             $msg = 'すでに予約している宿泊プランが存在しています';
-            return redirect('/')
+            return redirect('/user/' . Auth::id() . '/reservationlist')
                 ->with('msg', $msg);
         }
 
@@ -126,7 +128,7 @@ class UsersController extends Controller
     public function reservationList(User $user, Request $request)
     {
         $reservations = $user->reservations;
-        return view('user.reservationList', ['reseravtions' => $reservations]);
+        return view('user.reservationList', ['reservations' => $reservations]);
     }
 
 }

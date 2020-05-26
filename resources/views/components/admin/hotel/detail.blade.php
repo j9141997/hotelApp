@@ -3,7 +3,7 @@
     <div class="container">
         <section>
           <div class="row item-content">
-            <div class="col-md-3"><img src="/storage/images/{{ $hotel->image }}" alt="" class="detail-img"></div>
+            <div class="col-md-3"><img src="/storage/{{ $hotel->image }}" alt="" class="detail-img"></div>
               <div class="col-md-9 detail">
                 <div class="under">
                   <div class="mx-2 ditail2">

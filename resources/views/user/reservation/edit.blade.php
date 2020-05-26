@@ -54,14 +54,14 @@
                         <label for="count" class="">部屋数</label>
                         <div class="col-md-6">
                             <div class="room-input">
-                                <input id="count" type="number" class="form-control @error('count') is-invalid @enderror" name="count" value="{{ $reservation->count }}" required autocomplete="count" min="1" max="{{ $reservation->plan->room }}" autofocus>室
+                                <input id="count" type="number" onchange="getCount(value, {{$reservation->plan->countRoom($this) + $reservation->count}})" class="form-control @error('count') is-invalid @enderror" name="count" value="{{ $reservation->count }}" required autocomplete="count" min="1" max="{{ $reservation->plan->countRoom($this) + $reservation->count }}" autofocus>室
                                 @error('count')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                          <p>※残り{{ $reservation->plan->room }}室です。</p>
+                          <p>※残り<span id="roomcount">{{ $reservation->plan->countRoom($this) + $reservation->count }}</span>室です。</p>
                         </div>
                     </div>
                     <div class="form-group row mb-0">

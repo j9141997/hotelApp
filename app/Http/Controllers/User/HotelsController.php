@@ -70,6 +70,10 @@ class HotelsController extends Controller
           $plans = Plan::where('hotel_id', $hotel->id)
                           ->where('plan_exist', 1)
                           ->get();
+          foreach ($plans as $plan) {
+            foreach ($plan->reservations as $reservation) {
+            }
+          }
           return view('user.hotel.show', [
             'hotel' => $hotel,
             'plans' => $plans

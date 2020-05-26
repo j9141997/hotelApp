@@ -550,3 +550,14 @@ input:-ms-input-placeholder{
   width: 200px;
 }
 
+.destroy-confirm-img {
+  max-height: 160px;
+}
+
+.full-btn {
+  cursor: not-allowed;
+  margin-left: 10px;
+  background-color: #666666;
+  border: 1px solid #666666;
+}
+

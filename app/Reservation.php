@@ -27,4 +27,6 @@ class Reservation extends Model
         'checkout_day'   => ['required', 'date', "min:date('Y-m-d', strtotime('+2 day'))", 'max:2023-09-14'],
         'count'          => ['required', 'integer', "min:1"]
     ];
+
+    public static $max = 5;
 }
