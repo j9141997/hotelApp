@@ -57,27 +57,36 @@ class PlansController extends Controller
               $hotel = Hotel::find($plan->hotel_id);
               if(isset($hotel) === true) {
                 if($hotel->hotel_exist == 1) {
+                  //未宿泊の予約が無いかを調べる
+                  $reservation = Reservation::where('plan_id', $id)->select('checkin_day')->get();
+                  if(!$reservation->isEmpty()) {
+                    $count = count($reservation);
+                    for($i=0; $i<$count; $i++) {
+                      $checkin_day = $reservation[$i]->checkin_day;
+                      $today = date('Y-m-d');
+                      if($checkin_day > $today) {
+                        $msg = '指定した宿泊プランには未宿泊の予約があります。';
+                        return redirect()->back()->with('msg', $msg);
+                      }
+                    }
+                  }
                   $hotels = Hotel::all();
                   return view('admin.plan.edit', ['form'=>$plan, 'hotels'=>$hotels]);
                 } else {
                   $msg = '指定した宿泊プランの宿は削除されています。';
-                  return redirect('/admin/home')//リダイレクト先の変更の必要有り
-                           ->with('msg', $msg);
+                  return redirect()->back()->with('msg', $msg);
                 }
               } else {
                 $msg = '指定した宿泊プランの宿は存在しません。';
-                return redirect('/admin/home')//リダイレクト先の変更の必要有り
-                         ->with('msg', $msg);
+                return redirect()->back()->with('msg', $msg);
               }
             } else {
               $msg = '指定した宿泊プランは削除されています。';
-              return redirect('/admin/home')//リダイレクト先の変更の必要有り
-                       ->with('msg', $msg);
+              return redirect()->back()->with('msg', $msg);
             }
           } else {
             $msg = '指定した宿泊プランは存在しません。';
-            return redirect('/admin/home')//リダイレクト先の変更の必要有り
-                     ->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
           }
         }
 
@@ -91,29 +100,38 @@ class PlansController extends Controller
               $hotel = Hotel::find($request->hotel_id);
               if(isset($hotel) === true) {
                 if($hotel->hotel_exist == 1) {
+                  //未宿泊の予約が無いかを調べる
+                  $reservation = Reservation::where('plan_id', $id)->select('checkin_day')->get();
+                  if(!$reservation->isEmpty()) {
+                    $count = count($reservation);
+                    for($i=0; $i<$count; $i++) {
+                      $checkin_day = $reservation[$i]->checkin_day;
+                      $today = date('Y-m-d');
+                      if($checkin_day > $today) {
+                        $msg = '指定した宿泊プランには未宿泊の予約があります。';
+                        return redirect()->back()->with('msg', $msg);
+                      }
+                    }
+                  }
                   $form = $request->all();
                   unset($form['_token']);
                   $plan->fill($form)->save();
                   return view('admin.plan.update', ['hotel_id' => $hotel->id]);
                 } else {
                   $msg = '指定した宿は削除されています。';
-                  return redirect('/admin/home')//リダイレクト先の変更の必要有り
-                           ->with('msg', $msg);
+                  return redirect()->back()->with('msg', $msg);
                 }
               } else {
                 $msg = '指定した宿は存在しません';
-                return redirect('/admin/home')//リダイレクト先の変更の必要有り
-                         ->with('msg', $msg);
+                return redirect()->back()->with('msg', $msg);
               }
             } else {
               $msg = '指定した宿泊プランは削除されています。';
-              return redirect('/admin/home')//リダイレクト先の変更の必要有り
-                       ->with('msg', $msg);
+              return redirect()->back()->with('msg', $msg);
             }
           } else {
             $msg = '指定した宿泊プランは存在しません。';
-            return redirect('/admin/home')//リダイレクト先の変更の必要有り
-                     ->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
           }
         }
 
@@ -132,21 +150,18 @@ class PlansController extends Controller
                   $today = date('Y-m-d');
                   if($checkin_day > $today) {
                     $msg = '指定した宿泊プランには未宿泊の予約があります。';
-                    return redirect('/admin/home')
-                             ->with('msg', $msg);
+                    return redirect()->back()->with('msg', $msg);
                   }
                 }
               }
-              return view('admin.plan.test3', ['form'=>$plan]);
+              return view('admin.plan.destroyConfirm', ['form'=>$plan]);
             } else {
               $msg = '指定した宿泊プランは削除されています。';
-              return redirect('/admin/home')
-                       ->with('msg', $msg);
+              return redirect()->back()->with('msg', $msg);
             }
           } else {
             $msg = '指定した宿泊プランは存在しません。';
-            return redirect('/admin/home')
-                     ->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
           }
         }
 
@@ -165,8 +180,7 @@ class PlansController extends Controller
                   $today = date('Y-m-d');
                   if($checkin_day > $today) {
                     $msg = '指定した宿泊プランには未宿泊の予約があります。';
-                    return redirect('/admin/home')
-                             ->with('msg', $msg);
+                    return redirect()->back()->with('msg', $msg);
                   }
                 }
               }
@@ -175,13 +189,11 @@ class PlansController extends Controller
               return view('admin.plan.destroy', ['hotel_id' => $plan->hotel_id]);
             } else {
               $msg = '指定した宿泊  プランは削除されています。';
-              return redirect('/admin/home')
-                       ->with('msg', $msg);
+              return redirect()->back()->with('msg', $msg);
             }
           } else {
             $msg = '指定した宿泊プランは存在しません。';
-            return redirect('/admin/home')
-                     ->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
           }
         }
 }

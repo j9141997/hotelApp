@@ -64,6 +64,7 @@
                           <p>※残り<span id="roomcount">{{ $reservation->plan->countRoom($this) + $reservation->count }}</span>室です。</p>
                         </div>
                     </div>
+                    <input type="hidden" name="id" value="{{$reservation->id}}">
                     <div class="form-group row mb-0">
                         <button type="submit" class="confirm-btn">
                             {{ __('予約変更する') }}

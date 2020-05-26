@@ -20,8 +20,10 @@
               料金: ¥ {{ number_format($reservation->plan->price * $reservation->count) }}
             </div>
             <div class="reservation-action-btn">
-            <button class="reservation-edit" onclick="location.href='/plan/{{$reservation->plan->id}}/reservation/{{$reservation->id}}/edit'">予約内容の変更</button>
-            <button class="reservation-cancel" onclick="location.href='/plan/{{$reservation->plan->id}}/reservation/{{$reservation->id}}/cancel/confirm'">キャンセル</button>
+              @if(date('Y-m-d') < $reservation->checkin_day)
+                <button class="reservation-edit" onclick="location.href='/plan/{{$reservation->plan->id}}/reservation/{{$reservation->id}}/edit'">予約内容の変更</button>
+                <button class="reservation-cancel" onclick="location.href='/plan/{{$reservation->plan->id}}/reservation/{{$reservation->id}}/cancel/confirm'">キャンセル</button>
+              @endif
             </div>
           </div>
         </div>

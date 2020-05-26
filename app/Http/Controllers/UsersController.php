@@ -127,7 +127,7 @@ class UsersController extends Controller
     // 予約履歴
     public function reservationList(User $user, Request $request)
     {
-        $reservations = $user->reservations;
+        $reservations = $user->reservations->sortByDesc('created_at');
         return view('user.reservationList', ['reservations' => $reservations]);
     }
 

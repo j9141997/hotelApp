@@ -19,6 +19,6 @@ class Review extends Model
     ];
 
     public static $rules = [
-      'text' => ['required'],
+      'text' => ['required', 'max:200'],
     ];
 }
