@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Reservation;
 use App\Plan;
+use Carbon\Carbon;
 
 class ReservationsController extends Controller
 {
@@ -19,6 +20,13 @@ class ReservationsController extends Controller
     // 宿泊プラン（予約フォーム）入力画面
     public function create(Plan $plan)
     {
+        // 満室の場合
+        if ($plan->countRoom($this) <= 0) {
+            $msg = '既に満室です';
+            return redirect("/hotel/$plan->hotel_id")
+                ->with('msg', $msg);
+        }
+
         return view('user.reservation.create', [
             'hotel_id' => $plan->hotel->id,
             'plan'  => $plan
@@ -28,6 +36,32 @@ class ReservationsController extends Controller
     // 宿泊プラン予約 & 宿泊プラン予約完了画面
     public function store(Plan $plan, Request $request)
     {
+        // 満室の場合
+        if ($plan->countRoom($this) <= 0) {
+            $msg = '既に満室です';
+            return redirect("/hotel/$plan->hotel_id")
+                ->with('msg', $msg);
+        }
+        
+        // 既存予約（配列）
+        $existReservations = Auth::user()->reservations;
+        // 既に予約が5件以上存在する場合
+        if (count($existReservations) > Reservation::$max) {
+            $msg = '既に予約数が5件存在するため、予約できません';
+            return redirect("/plan/$plan->id/reservation/create")
+                ->with('msg', $msg);
+        }
+
+        $checkin_day = new Carbon($request->checkin_day);
+        // チェックイン日、チェックアウト日が被っている場合
+        foreach($existReservations as $res) {
+            if ($checkin_day->between(Carbon::parse($res->checkin_day), Carbon::parse($res->checkout_day))) {
+                $msg = '入力した日付は既に予約が入っております';
+                return redirect("/plan/$plan->id/reservation/create")
+                    ->with('msg', $msg);
+            }
+        }
+
         $reservation = new Reservation;
         $this->validate($request, Reservation::$rules);
         $reservation->user_id      =  Auth::id();
@@ -86,8 +120,7 @@ class ReservationsController extends Controller
         // ログインユーザーIDと予約したユーザーIDが一致しているかどうか
         if ( Auth::id() == $reservation->user_id) {
             if ($reservation->delete()) {
-                return view('user.hotel.destroy');
-                // 完了画面が完成したらパスを変更する予定です！ by 吉田
+                return view('user.reservation.destroy');
             }
         } else {
             // TOPページにリダイレクトする

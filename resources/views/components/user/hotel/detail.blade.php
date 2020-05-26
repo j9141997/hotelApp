@@ -3,7 +3,7 @@
     <div class="container">
         <section>
           <div class="row item-content">
-            <div class="col-md-3"><img src="/storage/images/{{ $hotel->image }}" alt="" class="detail-img"></div>
+            <div class="col-md-3"><img src="/storage/{{ $hotel->image }}" alt="" class="detail-img"></div>
               <div class="col-md-9 detail">
                 <div class="under">
                   <div class="mx-2 ditail2">
@@ -28,8 +28,12 @@
                   <div class="under"></div>
                     <div class="plan-detail">
                       <div class="detail-price">料金: ￥{{ $plan->price }}</div>
-                      <div class="detail-remaining">残り{{ $plan->room }}部屋</div>
-                      <input type="submit" class="blue-btn to-reservationBtn" value="予約する" onclick="location.href='/plan/{{ $plan->id }}/reservation/create'">
+                      @if ($plan->countRoom($plan) <= 0)
+                        <input type="submit" class="blue-btn to-reservationBtn full-btn" value="満室" onclick="location.href='/plan/{{ $plan->id }}/reservation/create'" disabled>
+                      @else
+                        <div class="detail-remaining">残り{{ $plan->countRoom($plan) }}部屋</div>
+                        <input type="submit" class="blue-btn to-reservationBtn" value="予約する" onclick="location.href='/plan/{{ $plan->id }}/reservation/create'">
+                      @endif
                     </div>
                 </section>
           </div>

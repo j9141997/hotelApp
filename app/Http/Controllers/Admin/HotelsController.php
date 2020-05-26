@@ -189,7 +189,7 @@ class HotelsController extends Controller
               }
             }
           }
-          return view('admin.hotel.test3', ['form'=>$hotel]);
+          return view('admin.hotel.destroyConfirm', ['form'=>$hotel]);
         } else {
           $msg = '指定した宿は削除されています。';
           return redirect('/admin/home')

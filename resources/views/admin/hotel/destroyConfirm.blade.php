@@ -56,7 +56,7 @@
                       <div class="form-group row register-group">
                           <label for="image" class="">宿写真</label>
                           <div class="col-md-6">
-                              <img src="/storage/{{$form->image}}">
+                              <img src="/storage/{{$form->image}}" class="destroy-confirm-img">
                           </div>
                       </div>
                       <div class="form-group row mb-0">

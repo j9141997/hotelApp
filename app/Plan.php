@@ -24,6 +24,16 @@ class Plan extends Model
         return $this->belongsTo('App\Type');
     }
 
+    // 残り部屋数をカウントする
+    public function countRoom()
+    {
+      $count = $this->room;
+      foreach ($this->reservations as $reservation) {
+         $count = $count - $reservation->count;
+      }
+      return $count;
+    }
+
 
     protected $fillable = [
       'hotel_id',
