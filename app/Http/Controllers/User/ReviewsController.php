@@ -14,7 +14,7 @@ class ReviewsController extends Controller
       $this->validate($request, Review::$rules);
       //
       $text = $request->text;
-      if(strpos($text, '　') !== false) {
+      if(strpos($text, '　') === 0) {
         $msg = '口コミを正しく入力して下さい。';
         return redirect()->back()->with('msg', $msg);
       }
