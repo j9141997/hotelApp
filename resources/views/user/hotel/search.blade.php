@@ -8,7 +8,7 @@
     @foreach ($hotels as $hotel)
       <div class="item-container hotel-list">
         <div class="image-section"><img src="/storage/{{ $hotel->image }}" alt="" class="toppage-image"></div>
-        <div class="col-md-9">
+        <div class="col-md-9 info-section">
           <div class="under">
             <div class="mx-2">
             <span class="toppage-title">{{ $hotel->name }}</span>
@@ -35,5 +35,6 @@
   @else
     <h3 class="no-data">該当する宿はありませんでした。</h3>
   @endif
+  {{ $hotels->links() }}
 </div>
 @endsection

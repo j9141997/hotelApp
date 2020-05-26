@@ -19,11 +19,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Review');
     }
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
     protected $fillable = [
         'name',
         'postal',
@@ -36,21 +32,12 @@ class User extends Authenticatable
 
     public static $rules = [
         'name'     => ['required', 'string', 'max:50'],
-        'postal'   => ['required', 'string', 'max:7'],
+        'postal'   => ['required', 'integer', 'digits:7'],
         'address'  => ['required', 'string', 'max:200'],
-        'tel'      => ['required', 'string', 'max:20'],
+        'tel'      => ['required', 'string', 'digits_between:8,20'],
         'birthday' => ['required', 'date'],
     ];
 
-    public static $regist_rules = [
-        'name'     => ['required', 'string', 'max:50'],
-        'postal'   => ['required', 'string', 'max:7'],
-        'address'  => ['required', 'string', 'max:200'],
-        'tel'      => ['required', 'string', 'max:20'],
-        'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
-        'birthday' => ['required', 'date'],
-        'password' => ['required', 'string', 'min:6', 'confirmed'],
-    ];
 
     /**
      * The attributes that should be hidden for arrays.

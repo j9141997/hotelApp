@@ -109,7 +109,8 @@
 }
 
 /* ユーザー入力フォーム */
-.col-md-6 > input {
+.col-md-6 > input,
+.col-md-6 > select {
   width: 230px;
 }
 
@@ -282,6 +283,7 @@ body {background-color: #e6e6e6;}
 div.detail{
   margin-top: 20px;
   margin-bottom: 20px;
+  max-height: 200px;
 }
 div.under {
   border-bottom: dotted 2px #1F2F54;
@@ -387,10 +389,6 @@ span.hoteltype{
 }
 .self-container{
   background-color: #e8e8e8;
-}
-div.detail{
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 .mx-2 {
   display: flex;
@@ -515,7 +513,7 @@ input:-ms-input-placeholder{
 
 .detail-img {
   max-height: 160px;
-  width: 100%;
+  max-width: 100%;
 }
 
 /* 管理者詳細 */
@@ -562,4 +560,26 @@ input:-ms-input-placeholder{
   margin-left: 10px;
   background-color: #666666;
   border: 1px solid #666666;
+}
+
+.info-section {
+  max-height: 200px;
+}
+
+.img-form {
+  display: flex;
+  justify-content: center;
+}
+
+/* ページネーション */
+.pagination {
+  justify-content: center;
+}
+.page-link {
+  color: #1F2F54;
+}
+.page-item.active .page-link {
+  background-color: #1F2F54;
+  border-color: #1F2F54;
+  color: #fff;
 }

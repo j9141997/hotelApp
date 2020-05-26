@@ -36,6 +36,10 @@ class ReservationsController extends Controller
     // 宿泊プラン予約 & 宿泊プラン予約完了画面
     public function store(Plan $plan, Request $request)
     {
+
+        $checkin_day  = new Carbon($request->checkin_day);
+        $checkout_day = new Carbon($request->checkout_day);
+
         // 満室の場合
         if ($plan->countRoom($this) <= 0) {
             $msg = '既に満室です';
@@ -62,6 +66,13 @@ class ReservationsController extends Controller
                 return redirect("/plan/$plan->id/reservation/create")
                     ->with('msg', $msg);
             }
+        }
+
+        // チェックアウト日がチェックイン日より過去の場合
+        if ($checkout_day->diff($checkin_day)->invert == 0) {
+            $msg = 'チェックアウト日をチェックイン日より後の日にしてください';
+            return redirect("/plan/$plan->id/reservation/create")
+            ->with('msg', $msg);
         }
 
         $reservation = new Reservation;

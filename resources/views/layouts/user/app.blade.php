@@ -12,6 +12,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('/js/countNum.js') }}"></script>
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+    <script src="{{ asset('/js/autoDate.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -66,7 +68,7 @@
         height: 32px;
         text-align: center;
         line-height: 32px;
-        background-color: #e63946;
+        background-color: #E3343F;
         color: #fff;
     }
 

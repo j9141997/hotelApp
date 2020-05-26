@@ -116,7 +116,7 @@ return [
     'starts_with' => ':attributeを:valuesから始まるよう入力してください。',
     'string' => ':attributeは門司で入力してください。',
     'timezone' => ':attributeを正しいタイムゾーンで入力してください。',
-    'unique' => ':attributeは既に取得されているため、違うものを入力してください。',
+    'unique' => 'この:attributeは登録済みです。',
     'uploaded' => ':attributeはアップロードに失敗しました。',
     'url' => ':attributeを正しいURLで入力してください。',
     'uuid' => ':attributeを正しいUUIDで入力してください。',
@@ -150,8 +150,13 @@ return [
     */
 
     'attributes' => [
-        'email'    => 'メールアドレス',
-	      'password' => 'パスワード',
+        'name' => '名前',
+        'postal' => '郵便番号',
+        'address' => '住所',
+        'tel' => '電話番号',
+        'birthday' => '誕生日',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
         'text'     => '口コミ',
     ],
 

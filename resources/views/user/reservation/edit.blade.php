@@ -31,7 +31,10 @@
                       <div class="form-group row register-group">
                           <label for="checkin_day" class="">チェックイン</label>
                           <div class="col-md-6">
-                              <input id="checkin_day" type="date" class="form-control @error('checkin_day') is-invalid @enderror" name="checkin_day" value="{{ date("Y-m-d", strtotime($reservation->checkin_day )) }}" required autocomplete="checkin_day" min="{{date('Y-m-d', strtotime('+1 day'))}}" max="2022-9-14" autofocus>
+                              <input id="checkin_day" type="date" class="form-control @error('checkin_day') is-invalid @enderror" name="checkin_day" 
+                              value="{{ date("Y-m-d", strtotime($reservation->checkin_day )) }}" required 
+                              autocomplete="checkin_day" min="{{date('Y-m-d', strtotime('+1 day'))}}" max="2022-9-14" 
+                              onchange="getDate(value)" autofocus>
                               @error('checkin_day')
                                   <span class="invalid-feedback" role="alert">
                                       <strong>{{ $message }}</strong>
@@ -54,14 +57,16 @@
                         <label for="count" class="">部屋数</label>
                         <div class="col-md-6">
                             <div class="room-input">
-                                <input id="count" type="number" onchange="getCount(value, {{$reservation->plan->countRoom($this) + $reservation->count}})" class="form-control @error('count') is-invalid @enderror" name="count" value="{{ $reservation->count }}" required autocomplete="count" min="1" max="{{ $reservation->plan->countRoom($this) + $reservation->count }}" autofocus>室
+                                <input id="count" type="number" onchange="getCount(value, {{$reservation->plan->countRoom($this) + $reservation->count}})" 
+                                class="form-control @error('count') is-invalid @enderror" name="count" value="{{ $reservation->count }}" 
+                                required autocomplete="count" min="1" max="{{ $reservation->plan->countRoom($this) + $reservation->count }}" autofocus>室
                                 @error('count')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                          <p>※残り<span id="roomcount">{{ $reservation->plan->countRoom($this) + $reservation->count }}</span>室です。</p>
+                          <p>※残り<span id="roomcount">{{ $reservation->plan->countRoom($this) }}</span>室です。</p>
                         </div>
                     </div>
                     <input type="hidden" name="id" value="{{$reservation->id}}">
