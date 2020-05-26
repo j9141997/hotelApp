@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Carbon\Carbon;
 
 class UsersController extends Controller
 {
@@ -51,6 +52,24 @@ class UsersController extends Controller
     public function update(User $user, Request $request)
     {
         $this->validate($request, User::$rules);
+
+        //日付(誕生日)の下限・上限設定(150年前)
+        $carbon = new Carbon();
+        $minDay = date('Y-m-d', strtotime($carbon->subYears(150)));
+        $maxDay = date('Y-m-d', strtotime($carbon->now()));
+        //入力値が日にちか否かを評価
+        $birthday = $request->birthday;
+        if(strtotime($birthday)) {
+          //入力値が150年前から現在までの間にあるか否かを評価
+          if($birthday < $minDay or $maxDay < $birthday) {
+            $msg = '誕生日として正しくありません。';
+            return redirect()->back()->with('msg', $msg);
+          }
+        } else {
+          $msg = '誕生日として正しくありません。';
+          return redirect()->back()->with('msg', $msg);
+        }
+
         $form = $request->all();
         unset($form['_token']);
         if ($user->fill($form)->save()) {
