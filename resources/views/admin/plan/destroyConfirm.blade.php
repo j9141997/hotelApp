@@ -41,12 +41,12 @@
                             {{ $form->room }}
                           </div>
                       </div>
-                      <div class="form-group row register-group">
+                      {{--<!-- <div class="form-group row register-group">
                           <label for="checkout_time" class="">チェックアウト</label>
                           <div class="col-md-6">
                             {{ $form->checkout_time }}
                           </div>
-                      </div>
+                      </div> -->--}}
                       <div class="form-group row mb-0">
                           <button type="submit" class="complete-btn delete-btn">
                               削除する

@@ -42,20 +42,22 @@ class ReservationsController extends Controller
             return redirect("/hotel/$plan->hotel_id")
                 ->with('msg', $msg);
         }
-        
+
         // 既存予約（配列）
         $existReservations = Auth::user()->reservations;
         // 既に予約が5件以上存在する場合
-        if (count($existReservations) > Reservation::$max) {
+        if (count($existReservations) >= Reservation::$max) {
             $msg = '既に予約数が5件存在するため、予約できません';
             return redirect("/plan/$plan->id/reservation/create")
                 ->with('msg', $msg);
         }
 
         $checkin_day = new Carbon($request->checkin_day);
+        $checkout_day = new Carbon($request->checkout_day);
         // チェックイン日、チェックアウト日が被っている場合
         foreach($existReservations as $res) {
-            if ($checkin_day->between(Carbon::parse($res->checkin_day), Carbon::parse($res->checkout_day))) {
+            if ($checkin_day->between(Carbon::parse($res->checkin_day), Carbon::parse($res->checkout_day))
+                or $checkout_day->between(Carbon::parse($res->checkin_day), Carbon::parse($res->checkout_day))) {
                 $msg = '入力した日付は既に予約が入っております';
                 return redirect("/plan/$plan->id/reservation/create")
                     ->with('msg', $msg);
@@ -93,6 +95,24 @@ class ReservationsController extends Controller
     public function update(Plan $plan, Reservation $reservation, Request $request)
     {
         $this->validate($request, Reservation::$rules);
+
+        // 既存予約（配列）
+        $existReservations = Auth::user()->reservations;
+        $reservation_id = $request->id;
+        $checkin_day = new Carbon($request->checkin_day);
+        $checkout_day = new Carbon($request->checkout_day);
+        // チェックイン日、チェックアウト日が被っている場合
+        foreach($existReservations as $res) {
+          //編集する予約のチェックイン・チェックアウト日の評価を除く
+          if($res->id != $reservation_id) {
+            if ($checkin_day->between(Carbon::parse($res->checkin_day), Carbon::parse($res->checkout_day))
+                or $checkout_day->between(Carbon::parse($res->checkin_day), Carbon::parse($res->checkout_day))) {
+                $msg = '入力した日付は既に予約が入っております';
+                return redirect()->back()->with('msg', $msg);
+            }
+          }
+        }
+
         $form = $request->all();
         unset($form['_token']);
         if ($reservation->fill($form)->save()) {

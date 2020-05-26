@@ -109,6 +109,10 @@ return [
         'string' => ':attributeは:size文字で入力してください。',
         'array' => ':attributeは:size個にしてください。',
     ],
+    'text' => [
+      'requrired' => ':attributeを入力してください。',
+      'max'       => ':attributeは200文字以内で入力してください。',
+    ],
     'starts_with' => ':attributeを:valuesから始まるよう入力してください。',
     'string' => ':attributeは門司で入力してください。',
     'timezone' => ':attributeを正しいタイムゾーンで入力してください。',
@@ -146,8 +150,9 @@ return [
     */
 
     'attributes' => [
-        'email' => 'メールアドレス',
-	'password' => 'パスワード',
+        'email'    => 'メールアドレス',
+	      'password' => 'パスワード',
+        'text'     => '口コミ',
     ],
 
 ];

@@ -12,6 +12,12 @@ class ReviewsController extends Controller
     public function store(Request $request, $id)
     {
       $this->validate($request, Review::$rules);
+      //
+      $text = $request->text;
+      if(strpos($text, '　') !== false) {
+        $msg = '口コミを正しく入力して下さい。';
+        return redirect()->back()->with('msg', $msg);
+      }
       $review = new Review;
       $form = $request->all();
       $review->user_id = Auth::id();

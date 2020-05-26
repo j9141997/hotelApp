@@ -5,7 +5,17 @@
   <div class="mx-5">
     <div class="container">
       <section class="">
-        <div class="minititle1 text-center">口コミの投稿</div>
+        <div class="minititle-review-box">
+          <div class="minititle1 text-center">口コミの投稿</div>
+          <div class="review-error">
+            @error('text')
+              {{ $message }}
+            @enderror
+            @if(session('msg') !== null)
+              {{session('msg')}}
+            @endif
+          </div>
+        </div>
           <div class="container">
             <form class="" action="/hotel/{{$hotel->id}}" method="post">
               @csrf

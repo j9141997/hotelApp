@@ -58,8 +58,7 @@ class HotelsController extends Controller
         return view('admin.hotel.search', ['hotels' => $hotels, 'keyword' => $keyword]);
       } else {
         $msg = '宿名もしくは宿タイプを入力してください。';
-        return redirect('/admin/hotel/search/input')
-                 ->with('msg', $msg);
+        return redirect()->back()->with('msg', $msg);
       }
     }
     // 宿の登録入力画面
@@ -102,13 +101,11 @@ class HotelsController extends Controller
               ]);
           } else {
             $msg = '指定した宿は削除されています。';
-            return redirect('/admin/home')//リダイレクト先の変更の必要あり
-                     ->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
           }
         } else {
           $msg = '指定した宿は存在しません。';
-          return redirect('/admin/home')//リダイレクト先の変更の必要あり
-                   ->with('msg', $msg);
+          return redirect()->back()->with('msg', $msg);
         }
     }
 
@@ -121,13 +118,11 @@ class HotelsController extends Controller
           return view('admin.hotel.edit', ['form'=>$hotel]);
         } else {
           $msg = '指定した宿は削除されています。';
-          return redirect('/admin/home')//リダイレクト先の変更の必要あり
-                   ->with('msg', $msg);
+          return redirect()->back()->with('msg', $msg);
         }
       } else {
         $msg = '指定した宿は存在しません。';
-        return redirect('/admin/home')//リダイレクト先の変更の必要あり
-                 ->with('msg', $msg);
+        return redirect()->back()->with('msg', $msg);
       }
     }
 
@@ -153,13 +148,11 @@ class HotelsController extends Controller
           return view('admin.hotel.update', ['hotel_id' => $hotel->id]);
         } else {
           $msg = '指定した宿は削除されています。';
-          return redirect('/admin/home')//リダイレクト先の変更の必要あり
-                   ->with('msg', $msg);
+          return redirect()->back()->with('msg', $msg);
         }
       } else {
         $msg = '指定した宿は存在しません。';
-        return redirect('/admin/home')//リダイレクト先の変更の必要あり
-                 ->with('msg', $msg);
+        return redirect()->back()->with('msg', $msg);
       }
     }
 
@@ -182,8 +175,7 @@ class HotelsController extends Controller
                   $today = date('Y-m-d');
                   if($checkin_day > $today) {
                     $msg = '指定した宿には未宿泊の予約があります。';
-                    return redirect('/admin/home')
-                             ->with('msg', $msg);
+                    return redirect()->back()->with('msg', $msg);
                   }
                 }
               }
@@ -192,13 +184,11 @@ class HotelsController extends Controller
           return view('admin.hotel.destroyConfirm', ['form'=>$hotel]);
         } else {
           $msg = '指定した宿は削除されています。';
-          return redirect('/admin/home')
-                   ->with('msg', $msg);
+          return redirect()->back()->with('msg', $msg);
         }
       } else {
         $msg = '指定した宿は存在しません。';
-        return redirect('/admin/home')
-                 ->with('msg', $msg);
+        return redirect()->back()->with('msg', $msg);
       }
     }
 
@@ -221,8 +211,7 @@ class HotelsController extends Controller
                   $today = date('Y-m-d');
                   if($checkin_day > $today) {
                     $msg = '指定した宿には未宿泊の予約があります。';
-                    return redirect('/admin/home')
-                             ->with('msg', $msg);
+                    return redirect()->back()->with('msg', $msg);
                   }
                 }
               }
@@ -233,13 +222,11 @@ class HotelsController extends Controller
           return view('admin.hotel.destroy');
         } else {
           $msg = '指定した宿は削除されています。';
-          return redirect('/admin/home')
-                   ->with('msg', $msg);
+          return redirect()->back()->with('msg', $msg);
         }
       } else {
         $msg = '指定した宿は存在しません。';
-        return redirect('/admin/home')
-                 ->with('msg', $msg);
+        return redirect()->back()->with('msg', $msg);
       }
     }
 }

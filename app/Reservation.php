@@ -23,8 +23,8 @@ class Reservation extends Model
     ];
 
     public static $rules = [
-        'checkin_day'    => ['required', 'date', "min:date('Y-m-d', strtotime('+1 day'))", 'max:2023-09-14'],
-        'checkout_day'   => ['required', 'date', "min:date('Y-m-d', strtotime('+2 day'))", 'max:2023-09-14'],
+        'checkin_day'    => ['required', 'date', "min:date('Y-m-d', strtotime('+1 day'))", "before:2023-09-14"],
+        'checkout_day'   => ['required', 'date', "min:date('Y-m-d', strtotime('+2 day'))", "before:2023-09-14"],
         'count'          => ['required', 'integer', "min:1"]
     ];
 

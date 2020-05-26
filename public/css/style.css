@@ -435,6 +435,9 @@ table td {padding:10px;}
 #user-detail-btn-edit {width:150px; margin:0px 0px 0px 15px;
                        font-size:20px; font-weight:bold; border-radius:5px;
                        background-color:#000033; color:#ffffff;}
+/* 会員 口コミ */
+.minititle-review-box {display:flex;}
+.review-error {margin-left:5px; padding:5px; color:#d90429; font-weight:bold;}
 
 /*　sato　*/
 /*プレースホルダのフォントサイズを変えました*/
@@ -560,4 +563,3 @@ input:-ms-input-placeholder{
   background-color: #666666;
   border: 1px solid #666666;
 }
-

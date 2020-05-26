@@ -48,7 +48,7 @@ class Plan extends Model
       'hotel_id'  => ['not_in:0', 'numeric', 'digits:10'],
       'name'      => ['required', 'string', 'max:50'],
       'price'     => ['required', 'numeric', 'min:0'],
-      'room'      => ['required', 'numeric', 'min:0'],
+      'room'      => ['required', 'numeric', 'min:1'],
     ];
 
 
@@ -64,6 +64,6 @@ class Plan extends Model
       'price.min'          => '金額は非負で入力して下さい。',
       'room.required'      => '部屋数は必須入力項目です。',
       'room.numeric'       => '部屋数は数字で入力して下さい。',
-      'room.min'           => '部屋数は非負で入力して下さい。',
+      'room.min'           => '部屋数は非負・1部屋以上で入力して下さい。',
     ];
 }
