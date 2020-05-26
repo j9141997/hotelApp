@@ -77,9 +77,9 @@ class RegisterController extends Controller
           //条件分岐で誕生日が数値であることを確認しているため、その他のバリデーションをチェック
           return Validator::make($data, [
               'name'     => ['required', 'string', 'max:50'],
-              'postal'   => ['required', 'string', 'max:7', 'min:7'],
+              'postal'   => ['required', 'integer', 'digits:7'],
               'address'  => ['required', 'string', 'max:200'],
-              'tel'      => ['required', 'string', 'max:20'],
+              'tel'      => ['required', 'integer', 'digits_between:8,20'],
               'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
               'birthday' => ['required', 'date', 'after:'.$minDay, 'before:'.$maxDay],
               'password' => ['required', 'string', 'min:6', 'confirmed'],
@@ -88,24 +88,14 @@ class RegisterController extends Controller
           //バリデーション「numeric」により、誕生日が数値でないことをエラー表示する
           return Validator::make($data, [
               'name'     => ['required', 'string', 'max:50'],
-              'postal'   => ['required', 'string', 'max:7', 'min:7'],
+              'postal'   => ['required', 'integer', 'digits:7'],
               'address'  => ['required', 'string', 'max:200'],
-              'tel'      => ['required', 'string', 'max:20'],
+              'tel'      => ['required', 'integer', 'digits_between:8,20'],
               'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
               'birthday' => ['required', 'date', 'after:'.$minDay, 'before:'.$maxDay, 'numeric'],
               'password' => ['required', 'string', 'min:6', 'confirmed'],
           ]);
         }
-
-        // return Validator::make($data, [
-        //     'name'     => ['required', 'string', 'max:50'],
-        //     'postal'   => ['required', 'string', 'max:7', 'min:7'],
-        //     'address'  => ['required', 'string', 'max:200'],
-        //     'tel'      => ['required', 'string', 'max:20'],
-        //     'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
-        //     'birthday' => ['required', 'date', 'after:'.$minDay, 'before:'.$maxDay, 'numeric'],
-        //     'password' => ['required', 'string', 'min:6', 'confirmed'],
-        // ]);
     }
 
     // 登録処理

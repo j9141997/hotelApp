@@ -1,6 +1,5 @@
 @extends('layouts.admin.app')
 
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -22,7 +21,6 @@
                         </div>
                         <div class="form-group row register-group">
                             <label for="hotel_id" class="">宿名</label>
-
                             <div class="col-md-6">
                                 <select id="hotel_id" class="form-control @error('hotel_id') is-invalid @enderror" name="hotel_id"  value="{{ $form->hotel_id }}" required>
                                   @foreach($hotels as $hotel)

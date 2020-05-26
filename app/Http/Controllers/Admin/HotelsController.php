@@ -40,18 +40,18 @@ class HotelsController extends Controller
       $type_id = $request->type_id;
       if(isset($name) === true and isset($type_id) === true) {
         if($type_id != 0) {
-          $hotels = Hotel::where('name', 'like', "%$name%")->where('type_id', $type_id)->where('hotel_exist', 1)->get();
+          $hotels = Hotel::where('name', 'like', "%$name%")->where('type_id', $type_id)->where('hotel_exist', 1)->paginate(5);
           $type = Type::find($type_id);
           $type_name = $type->name;
           $keyword = '宿名：' . $name . '』と『宿タイプ：' . $type_name;
           return view('admin.hotel.search', ['hotels' => $hotels, 'keyword' => $keyword]);
         } else if($type_id == 0) {
-          $hotels = Hotel::where('name', 'like',"%$name%")->where('hotel_exist', 1)->get();
+          $hotels = Hotel::where('name', 'like',"%$name%")->where('hotel_exist', 1)->paginate(5);
           $keyword = '宿名：' . $name;
           return view('admin.hotel.search', ['hotels' => $hotels, 'keyword' => $keyword]);
         }
       } else if(isset($type_id) === true and $type_id != 0) {
-        $hotels = Hotel::where('type_id', $type_id)->where('hotel_exist', 1)->get();
+        $hotels = Hotel::where('type_id', $type_id)->where('hotel_exist', 1)->paginate(5);
         $type = Type::find($type_id);
         $type_name = $type->name;
         $keyword = '宿タイプ：' . $type_name;

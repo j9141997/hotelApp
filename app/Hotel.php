@@ -40,7 +40,7 @@ class Hotel extends Model
   public static $mainRules = [
       'name'           => ['required', 'string', 'max:50'],
       'type_id'        => ['not_in:0', 'numeric', 'between:1,6'],
-      'postal'         => ['required', 'string', 'max:7', 'min:7'],
+      'postal'         => ['required', 'string', 'digits:7'],
       'address'        => ['required', 'string', 'max:200'],
       'checkin_time'   => ['required', 'date_format:H:i'],
       'checkout_time'  => ['required', 'date_format:H:i'],
@@ -60,8 +60,6 @@ class Hotel extends Model
       'type_id.between'           => '宿分類が正しくありません。',
       'postal.required'           => '郵便番号は必須入力項目です。',
       'postal.string'             => '郵便番号は文字列で入力して下さい。',
-      'postal.max'                => '郵便番号が正しくありません。',
-      'postal.min'                => '郵便番号が正しくありません。',
       'address.required'          => '住所は必須入力項目です。',
       'address.string'            => '住所は文字列で入力して下さい。',
       'address.max'               => '住所は200文字以内で入力して下さい。',

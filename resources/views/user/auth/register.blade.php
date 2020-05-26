@@ -33,8 +33,8 @@
                             <label for="postal" class="">郵便番号</label>
 
                             <div class="col-md-6">
-                                <input id="postal" type="text" class="form-control @error('postal') is-invalid @enderror" name="postal" value="{{ old('postal') }}" placeholder="例）1231234" required autocomplete="postal">
-
+                                <input id="postal" type="text" class="form-control @error('postal') is-invalid @enderror" 
+                                name="postal" value="{{ old('postal') }}" placeholder="例）1231234" required autocomplete="postal">
                                 @error('postal')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -47,7 +47,9 @@
                             <label for="address" class="">住所</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required placeholder="例）東京都新宿区新宿３丁目１−１３ 京王新宿追分ビル4F"autocomplete="address">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" 
+                                name="address" value="{{ old('address') }}" required placeholder="例）東京都新宿区新宿３丁目１−１３ 京王新宿追分ビル4F"
+                                autocomplete="address">
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -89,7 +91,7 @@
                             <label for="birthday" class="">誕生日</label>
 
                             <div class="col-md-6">
-                            <input id="birthday" type="date"  value="" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" required autocomplete="birthday" max="{{date("Y-m-d")}}">
+                            <input id="birthday" type="date"  class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" required autocomplete="birthday" max="{{date("Y-m-d")}}">
 
                                 @error('birthday')
                                     <span class="invalid-feedback" role="alert">

@@ -30,7 +30,10 @@
                       <div class="form-group row register-group">
                           <label for="checkin_day" class="">チェックイン</label>
                           <div class="col-md-6">
-                              <input id="checkin_day" type="date" class="form-control @error('checkin_day') is-invalid @enderror" name="checkin_day" value="{{ old('checkin_day', date('Y-m-d', strtotime('+1 day'))) }}" required autocomplete="checkin_day" min="{{date('Y-m-d', strtotime('+1 day'))}}" max="{{date('Y-m-d', strtotime('+1 year'))}}" autofocus>
+                              <input id="checkin_day" type="date" class="form-control @error('checkin_day') is-invalid @enderror" 
+                              name="checkin_day" value="{{ old('checkin_day', date('Y-m-d', strtotime('+1 day'))) }}" required 
+                              autocomplete="checkin_day" min="{{date('Y-m-d', strtotime('+1 day'))}}" 
+                              max="{{date('Y-m-d', strtotime('+1 year'))}}" onchange="getDate(value)" autofocus>
                               @error('checkin_day')
                                   <span class="invalid-feedback" role="alert">
                                       <strong>{{ $message }}</strong>
@@ -41,7 +44,10 @@
                       <div class="form-group row register-group">
                         <label for="checkout_day" class="">チェックアウト</label>
                         <div class="col-md-6">
-                            <input id="checkout_day" type="date" class="form-control @error('checkout_day') is-invalid @enderror" name="checkout_day" value="{{ old('checkout_day', date('Y-m-d', strtotime('+2 day'))) }}" required autocomplete="checkout_day" min="{{date('Y-m-d', strtotime('+2 day'))}}" max="{{date('Y-m-d', strtotime('+1 year'))}}">
+                            <input id="checkout_day" type="date" class="form-control @error('checkout_day') is-invalid @enderror" 
+                            name="checkout_day" value="{{ old('checkout_day', date('Y-m-d', strtotime('+2 day'))) }}" 
+                            required autocomplete="checkout_day" min="{{date('Y-m-d', strtotime('+2 day'))}}" 
+                            max="{{date('Y-m-d', strtotime('+1 year'))}}">
                             @error('checkout_day')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -53,7 +59,9 @@
                         <label for="count" class="">部屋数</label>
                         <div class="col-md-6">
                             <div class="room-input">
-                            <input id="count" type="number"  onchange="getCount(value, {{$plan->countRoom($this)}})" class="form-control @error('count') is-invalid @enderror" name="count" value="{{ old('count', 1) }}" required autocomplete="count" min="1" max="{{ $plan->countRoom($this)}}">室
+                            <input id="count" type="number"  onchange="getCount(value, {{$plan->countRoom($this)}})" 
+                            class="form-control @error('count') is-invalid @enderror" name="count" value="{{ old('count', 1) }}" 
+                            required autocomplete="count" min="1" max="{{ $plan->countRoom($this)}}">室
                                 @error('count')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
