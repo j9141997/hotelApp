@@ -49,8 +49,16 @@ class ReservationsController extends Controller
 
         // 既存予約（配列）
         $existReservations = Auth::user()->reservations;
+        // 未宿泊の予約数をカウント
+        $today = date('Y-m-d');
+        $countHistory = 0;
+        foreach($existReservations as $res) {
+          if($today < $res->checkin_day) {
+            $countHistory++;
+          }
+        }
         // 既に予約が5件以上存在する場合
-        if (count($existReservations) >= Reservation::$max) {
+        if ($countHistory >= Reservation::$max) {
             $msg = '既に予約数が5件存在するため、予約できません';
             return redirect("/plan/$plan->id/reservation/create")
                 ->with('msg', $msg);
